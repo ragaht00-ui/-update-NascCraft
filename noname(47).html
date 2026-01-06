@@ -1,0 +1,3657 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASSCRAFT | النسخة الملكية المتكاملة 👑</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* CSS Variables with Royal Gold Theme */
+        :root {
+            --mc-gold: #FFD700;
+            --mc-dark-gold: #D4AF37;
+            --royal-purple: #8A2BE2;
+            --royal-blue: #4169E1;
+            --royal-red: #DC143C;
+            --royal-emerald: #00C9A7;
+            --mc-black: #0A0A0A;
+            --mc-dark: #1A1A1A;
+            --mc-gray: #2A2A2A;
+            --mc-light: #F5F5F5;
+            --mc-green: #55FF55;
+            --mc-orange: #FFAA00;
+            
+            --primary-color: var(--mc-gold);
+            --secondary-color: var(--royal-purple);
+            --bg-primary: #000000;
+            --bg-secondary: #0F0F0F;
+            --bg-card: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --text-muted: #888888;
+            
+            --border-color: rgba(255, 215, 0, 0.3);
+            --shadow-glow: 0 0 20px rgba(255, 215, 0, 0.5);
+            --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+            --shadow-royal: 0 20px 50px rgba(0, 0, 0, 0.7);
+            
+            --gradient-gold: linear-gradient(135deg, #FFD700, #D4AF37);
+            --gradient-royal: linear-gradient(135deg, #FFD700, #8A2BE2, #4169E1);
+            --gradient-dark: linear-gradient(135deg, #0A0A0A, #1A1A1A);
+            --gradient-card: linear-gradient(135deg, #1A1A1A, #2A2A2A);
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+        }
+
+        /* Theme Colors for Sections */
+        [data-theme="rules"] { --primary-color: var(--mc-gold); }
+        [data-theme="news"] { --primary-color: #00C9A7; }
+        [data-theme="owner"] { --primary-color: var(--royal-purple); }
+        [data-theme="punish"] { --primary-color: var(--royal-red); }
+        [data-theme="warnings-log"] { --primary-color: #FF3366; }
+        [data-theme="store"] { --primary-color: var(--mc-green); }
+        [data-theme="ranks"] { --primary-color: var(--mc-orange); }
+        [data-theme="map"] { --primary-color: #4169E1; }
+        [data-theme="events"] { --primary-color: #FF6B35; }
+        [data-theme="auction"] { --primary-color: #9D4EDD; }
+        [data-theme="blacklist"] { --primary-color: var(--royal-red); }
+        [data-theme="court"] { --primary-color: #7209B7; }
+        [data-theme="guides"] { --primary-color: #00B4D8; }
+        [data-theme="vote"] { --primary-color: #FF9E00; }
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 25%);
+        }
+
+        .mc-font {
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* ====== Loading Screen - Enhanced ====== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #000000, #1A0033);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.8s ease;
+            pointer-events: none;
+        }
+
+        .royal-logo {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .gold-cube {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #FFD700, #D4AF37);
+            border-radius: 10px;
+            animation: goldFloat 3s ease-in-out infinite;
+            box-shadow: 
+                inset 0 0 10px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .gold-cube:nth-child(1) {
+            top: 0;
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .gold-cube:nth-child(2) {
+            top: 0;
+            right: 0;
+            animation-delay: 0.5s;
+        }
+
+        .gold-cube:nth-child(3) {
+            bottom: 0;
+            left: 0;
+            animation-delay: 1s;
+        }
+
+        .gold-cube:nth-child(4) {
+            bottom: 0;
+            right: 0;
+            animation-delay: 1.5s;
+        }
+
+        .gold-cube:nth-child(5) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--gradient-royal);
+            animation: goldPulse 2s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .loading-title {
+            font-size: 4.5rem;
+            background: var(--gradient-royal);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            font-family: 'VT323', monospace;
+            animation: goldGlow 2s ease-in-out infinite alternate;
+        }
+
+        .loading-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .loading-progress-container {
+            width: 500px;
+            max-width: 90%;
+        }
+
+        .loading-progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: var(--spacing-sm);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--gradient-royal);
+            border-radius: 5px;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        .loading-status {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            height: 1.8rem;
+            text-align: center;
+            margin-bottom: var(--spacing-xs);
+            font-family: 'VT323';
+        }
+
+        @keyframes goldFloat {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            }
+            50% { 
+                transform: translateY(-20px) rotate(5deg); 
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        @keyframes goldPulse {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1); 
+                filter: brightness(1);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.1); 
+                filter: brightness(1.3);
+            }
+        }
+
+        @keyframes goldGlow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.7)); }
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ====== Header - Enhanced ====== */
+        .header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(10,10,10,0.98));
+            border-bottom: 4px solid var(--primary-color);
+            padding: var(--spacing-xl) var(--spacing-sm);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .server-title {
+            font-size: 4rem;
+            background: var(--gradient-royal);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: var(--spacing-md) 0;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            font-family: 'VT323', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .update-badge {
+            background: linear-gradient(45deg, #FF3366, #FF9933, #FFD700);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            animation: badgePulse 2s infinite;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .server-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .server-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(138, 43, 226, 0.1));
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .info-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-value {
+            color: var(--primary-color);
+            font-family: 'VT323';
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .online-players {
+            color: var(--royal-emerald);
+            font-weight: bold;
+            animation: playerCount 5s infinite;
+        }
+
+        @keyframes playerCount {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ====== Secret Login - Enhanced ====== */
+        .secret-login {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .secret-emoji {
+            font-size: 2.2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: emojiGlow 2s infinite alternate;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .secret-emoji:hover {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes emojiGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+            100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+        }
+
+        /* ====== Admin Controls - Enhanced ====== */
+        .admin-controls {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            min-width: 250px;
+            display: none;
+        }
+
+        .admin-btn {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(138, 43, 226, 0.2));
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 15px;
+            color: var(--text-primary);
+            font-family: 'VT323';
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: right;
+        }
+
+        .admin-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(138, 43, 226, 0.4));
+            transform: translateX(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .admin-btn.founder {
+            background: var(--gradient-gold);
+            color: #000;
+            font-weight: bold;
+            border: 2px solid #FFF;
+        }
+
+        /* ====== Modal System ====== */
+        .secret-modal, .login-modal, .message-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .secret-modal.active, .login-modal.active, .message-modal.active {
+            display: flex;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .login-box, .message-box {
+            background: var(--gradient-dark);
+            border: 3px solid var(--mc-gold);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: var(--shadow-royal);
+            animation: boxAppear 0.5s ease;
+        }
+
+        @keyframes boxAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-title {
+            color: var(--mc-gold);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            font-family: 'VT323';
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--mc-gold);
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-family: 'Cairo';
+            transition: all 0.3s;
+        }
+
+        .login-input:focus {
+            border-color: var(--royal-purple);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            outline: none;
+        }
+
+        .login-btn {
+            background: var(--gradient-gold);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px 5px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'VT323';
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            width: 48%;
+            font-weight: bold;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .login-error {
+            color: var(--royal-red);
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* ====== Control Panels ====== */
+        .control-panel, .founder-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 2001;
+            overflow-y: auto;
+        }
+
+        .control-panel.active, .founder-panel.active {
+            display: block;
+            animation: panelSlideIn 0.5s ease;
+        }
+
+        @keyframes panelSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .panel-header, .founder-header {
+            background: var(--gradient-dark);
+            border-bottom: 3px solid var(--mc-gold);
+            padding: var(--spacing-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .panel-title, .founder-title {
+            color: var(--mc-gold);
+            font-size: 2.5rem;
+            font-family: 'VT323';
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .panel-close, .founder-close {
+            background: var(--royal-red);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'VT323';
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .panel-close:hover, .founder-close:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(220, 20, 60, 0.5);
+        }
+
+        .panel-grid, .founder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            padding: var(--spacing-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .control-card, .founder-card {
+            background: var(--gradient-card);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: var(--spacing-xl);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-card:hover, .founder-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-card);
+        }
+
+        .card-title, .founder-card-title {
+            color: var(--mc-gold);
+            font-size: 1.6rem;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'VT323';
+        }
+
+        .card-input, .founder-input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Cairo';
+            transition: all 0.3s;
+        }
+
+        .card-input:focus, .founder-input:focus {
+            border-color: var(--mc-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            outline: none;
+        }
+
+        .card-btn, .founder-btn {
+            background: var(--mc-gold);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            margin: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'VT323';
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .card-btn:hover, .founder-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .card-btn.danger, .founder-btn.danger {
+            background: var(--royal-red);
+            color: white;
+        }
+
+        .card-btn.success, .founder-btn.success {
+            background: var(--royal-emerald);
+            color: white;
+        }
+
+        .card-btn.primary, .founder-btn.primary {
+            background: var(--royal-blue);
+            color: white;
+        }
+
+        /* ====== Navigation - Enhanced ====== */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--primary-color);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 0.5rem;
+            padding: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        .nav-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .nav-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+        }
+
+        .nav-scroll::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(40, 40, 40, 0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            font-family: 'VT323';
+            font-size: 1.2rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), rgba(255, 215, 0, 0.8));
+            color: #000;
+            border-color: #fff;
+            box-shadow: 
+                0 0 20px var(--primary-color),
+                0 5px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            font-weight: bold;
+        }
+
+        /* ====== Content Sections ====== */
+        .content-section {
+            display: none;
+            animation: sectionFadeIn 0.5s ease;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes sectionFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            display: inline-block;
+            font-family: 'VT323';
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ====== Rules Grid ====== */
+        .rules-grid, .store-items, .ranks-grid, .news-grid, .guides-grid, .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .rule-card, .store-item, .rank-card, .news-card, .guide-card, .event-card {
+            background: var(--gradient-card);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .rule-card:hover, .store-item:hover, .rank-card:hover, .news-card:hover, .guide-card:hover, .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .rule-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-family: 'VT323';
+            font-size: 1.4rem;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        .rule-title {
+            color: var(--primary-color);
+            margin: 0 0 15px 50px;
+            font-size: 1.4rem;
+        }
+
+        .rule-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .rule-penalty {
+            color: var(--royal-red);
+            font-size: 0.9rem;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 10px;
+        }
+
+        /* ====== Owner Section - Royal Design ====== */
+        .owner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .owner-card {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(138, 43, 226, 0.1));
+            border: 3px solid var(--mc-gold);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .owner-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(255, 215, 0, 0.2),
+                0 0 60px rgba(138, 43, 226, 0.1);
+            border-color: var(--royal-purple);
+        }
+
+        .owner-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient-royal);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            z-index: 2;
+            animation: badgeGlow 2s infinite alternate;
+        }
+
+        @keyframes badgeGlow {
+            from { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+            to { box-shadow: 0 4px 25px rgba(138, 43, 226, 0.6); }
+        }
+
+        .owner-icon {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 2.5rem;
+            color: var(--mc-gold);
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            z-index: 2;
+        }
+
+        .owner-avatar {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto var(--spacing-md);
+            border-radius: 50%;
+            background: var(--gradient-royal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #000;
+            border: 3px solid var(--mc-gold);
+            box-shadow: 
+                0 0 30px rgba(255, 215, 0, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .owner-name {
+            color: var(--mc-gold);
+            font-size: 2.5rem;
+            margin: var(--spacing-sm) 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            position: relative;
+            font-family: 'VT323';
+        }
+
+        .owner-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--mc-gold), transparent);
+        }
+
+        .owner-role {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            margin-bottom: var(--spacing-md);
+            padding: 10px 25px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            display: inline-block;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .owner-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+            padding: 0 var(--spacing-md);
+        }
+
+        .owner-power {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .power-badge {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            padding: 8px 15px;
+            color: var(--mc-gold);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ====== Warnings Table - Fixed ====== */
+        .warnings-table {
+            width: 100%;
+            margin-top: var(--spacing-lg);
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .warnings-table th {
+            background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(220, 20, 60, 0.2));
+            color: var(--royal-red);
+            padding: var(--spacing-md);
+            text-align: right;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            font-weight: bold;
+            font-family: 'VT323';
+            font-size: 1.1rem;
+        }
+
+        .warnings-table td {
+            padding: var(--spacing-sm);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        .warnings-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .warnings-table tr:hover {
+            background: rgba(255, 51, 102, 0.1);
+            transform: scale(1.01);
+            transition: all 0.2s;
+        }
+
+        /* ====== Store Items ====== */
+        .store-item {
+            background: linear-gradient(135deg, rgba(85, 255, 85, 0.1), rgba(0, 255, 0, 0.05));
+            border: 2px solid var(--mc-green);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .store-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(85, 255, 85, 0.2);
+        }
+
+        .item-icon {
+            font-size: 3rem;
+            color: var(--mc-green);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .item-name {
+            color: var(--mc-green);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .item-price {
+            color: var(--mc-gold);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-sm);
+            font-family: 'VT323';
+        }
+
+        .item-price .currency {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-right: 5px;
+        }
+
+        .item-price .diamond {
+            color: #4AE3FF;
+            font-weight: bold;
+        }
+
+        .item-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .buy-btn {
+            background: var(--gradient-gold);
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'VT323';
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ====== Ranks Section ====== */
+        .rank-card {
+            background: linear-gradient(135deg, rgba(255, 170, 0, 0.1), rgba(255, 170, 0, 0.05));
+            border: 2px solid var(--mc-orange);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 170, 0, 0.2);
+        }
+
+        .rank-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--mc-orange);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .rank-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .rank-title {
+            color: var(--mc-orange);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .rank-price {
+            color: var(--mc-gold);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-md);
+            font-family: 'VT323';
+        }
+
+        .rank-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--spacing-md);
+            text-align: right;
+        }
+
+        .rank-features li {
+            color: var(--text-secondary);
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ====== Visitors Panel ====== */
+        .visitors-panel {
+            background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), rgba(0, 85, 255, 0.05));
+            border: 2px solid var(--royal-blue);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .visitors-title {
+            color: var(--royal-blue);
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .visitors-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: var(--spacing-md);
+        }
+
+        .visitor-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ====== Warning System ====== */
+        .warning-level {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+            font-family: 'VT323';
+        }
+
+        .warning-I { background: rgba(255, 215, 0, 0.3); color: #FFD700; }
+        .warning-II { background: rgba(255, 140, 0, 0.3); color: #FF8C00; }
+        .warning-III { background: rgba(255, 69, 0, 0.3); color: #FF4500; }
+        .warning-IV { background: rgba(220, 20, 60, 0.3); color: #DC143C; }
+        .warning-V { background: rgba(139, 0, 0, 0.3); color: #8B0000; }
+
+        /* ====== Notification System ====== */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2500;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+
+        .notification {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(138, 43, 226, 0.9));
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: notificationSlideIn 0.3s ease;
+            font-family: 'VT323';
+            font-size: 1.2rem;
+            border: 2px solid #FFF;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @keyframes notificationSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, rgba(0, 201, 167, 0.9), rgba(0, 150, 136, 0.9));
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.9), rgba(139, 0, 0, 0.9));
+            color: white;
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.9), rgba(138, 43, 226, 0.9));
+            color: white;
+        }
+
+        /* ====== Footer ====== */
+        footer {
+            background: linear-gradient(135deg, #000000, #1A0033);
+            border-top: 3px solid var(--mc-gold);
+            padding: var(--spacing-xl) var(--spacing-sm);
+            margin-top: var(--spacing-xl);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            background: var(--gradient-royal);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'VT323';
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: var(--spacing-xl);
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ====== Responsive Design ====== */
+        @media (max-width: 1200px) {
+            .server-title { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+            .owner-avatar { width: 130px; height: 130px; font-size: 3.5rem; }
+            .owner-name { font-size: 2.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .loading-title { font-size: 3rem; }
+            .server-title { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .nav-btn { padding: 0.6rem 1.2rem; font-size: 1.1rem; }
+            .owner-grid { grid-template-columns: 1fr; }
+            .panel-grid, .founder-grid { grid-template-columns: 1fr; }
+            .rules-grid, .store-items, .ranks-grid { grid-template-columns: 1fr; }
+            .owner-avatar { width: 120px; height: 120px; font-size: 3rem; }
+            .owner-name { font-size: 2rem; }
+            .admin-controls { right: 10px; min-width: 200px; }
+            .secret-emoji { width: 50px; height: 50px; font-size: 2rem; }
+            .royal-logo { width: 200px; height: 200px; }
+            .gold-cube { width: 50px; height: 50px; }
+            .gold-cube:nth-child(5) { width: 80px; height: 80px; }
+        }
+
+        @media (max-width: 480px) {
+            .loading-title { font-size: 2.5rem; }
+            .server-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .nav-btn { padding: 0.5rem 1rem; font-size: 1rem; }
+            .owner-avatar { width: 100px; height: 100px; font-size: 2.5rem; }
+            .owner-name { font-size: 1.8rem; }
+            .royal-logo { width: 150px; height: 150px; }
+            .gold-cube { width: 40px; height: 40px; }
+            .gold-cube:nth-child(5) { width: 60px; height: 60px; }
+            .admin-controls { display: none; }
+            .secret-emoji { width: 40px; height: 40px; font-size: 1.5rem; }
+            .panel-title, .founder-title { font-size: 1.8rem; }
+        }
+
+        /* ====== Content Editor ====== */
+        .content-editor {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--mc-gold);
+            border-radius: 10px;
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            display: none;
+        }
+
+        .content-editor.active {
+            display: block;
+            animation: sectionFadeIn 0.3s ease;
+        }
+
+        .editor-title {
+            color: var(--mc-gold);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-textarea {
+            width: 100%;
+            height: 200px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: var(--spacing-sm);
+            color: white;
+            font-family: 'Cairo';
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        /* ====== Benefits List ====== */
+        .benefits-list {
+            list-style: none;
+            padding-right: 20px;
+        }
+
+        .benefits-list li {
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            color: var(--mc-green);
+            position: absolute;
+            right: -20px;
+            font-weight: bold;
+        }
+
+        /* ====== Content Card ====== */
+        .content-card {
+            background: var(--gradient-card);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            transition: all 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="royal-logo">
+            <div class="gold-cube"></div>
+            <div class="gold-cube"></div>
+            <div class="gold-cube"></div>
+            <div class="gold-cube"></div>
+            <div class="gold-cube"></div>
+        </div>
+        
+        <h1 class="loading-title">NASSCRAFT</h1>
+        <p class="loading-subtitle">
+            المملكة العربية لماين كرافت | النظام الملكي المتكامل 2026
+        </p>
+        
+        <div class="loading-progress-container">
+            <div class="loading-progress-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <div class="loading-status" id="loadingStatus">تهيئة النظام الملكي...</div>
+        </div>
+    </div>
+
+    <!-- Secret Login Emoji -->
+    <div class="secret-login">
+        <button class="secret-emoji" onclick="showSecretLogin()">👑</button>
+    </div>
+
+    <!-- Secret Login Modal -->
+    <div class="secret-modal" id="secretModal">
+        <div class="login-box">
+            <h2 class="login-title">👑 الدخول الملكي</h2>
+            <input type="text" id="secretUsername" class="login-input" placeholder="اسم النبيل">
+            <input type="password" id="secretPassword" class="login-input" placeholder="كلمة السر الملكية">
+            <div>
+                <button class="login-btn" onclick="secretLogin()">دخول</button>
+                <button class="login-btn" onclick="hideSecretModal()" style="background: var(--royal-red);">إلغاء</button>
+            </div>
+            <div class="login-error" id="secretError">❌ اسم النبيل أو كلمة السر غير صحيحة</div>
+        </div>
+    </div>
+
+    <!-- Admin Controls -->
+    <div class="admin-controls" id="adminControls">
+        <button class="admin-btn founder" onclick="openFounderPanel()">
+            <i class="fas fa-crown"></i> لوحة الفاوندر
+        </button>
+        <button class="admin-btn" onclick="toggleServerStatus()">
+            <i class="fas fa-power-off"></i> تشغيل/إيقاف
+        </button>
+        <button class="admin-btn" onclick="managePlayers()">
+            <i class="fas fa-users-cog"></i> إدارة اللاعبين
+        </button>
+        <button class="admin-btn" onclick="openSection('warnings-log')">
+            <i class="fas fa-clipboard-list"></i> سجلات التحذيرات
+        </button>
+        <button class="admin-btn" onclick="openSection('blacklist')">
+            <i class="fas fa-ban"></i> القائمة السوداء
+        </button>
+        <button class="admin-btn" onclick="openSection('punish')">
+            <i class="fas fa-exclamation-triangle"></i> نظام التحذيرات
+        </button>
+        <button class="admin-btn" onclick="showStatistics()">
+            <i class="fas fa-chart-bar"></i> الإحصائيات
+        </button>
+        <button class="admin-btn founder" onclick="openGlobalMessages()">
+            <i class="fas fa-broadcast-tower"></i> بث رسائل
+        </button>
+        <button class="admin-btn founder" onclick="openAdvancedStats()">
+            <i class="fas fa-chart-network"></i> إحصائيات متقدمة
+        </button>
+        <button class="admin-btn founder" onclick="openSecurityPanel()">
+            <i class="fas fa-shield-alt"></i> مركز الأمان
+        </button>
+        <button class="admin-btn" onclick="logoutAdmin()" style="background: var(--royal-red);">
+            <i class="fas fa-sign-out-alt"></i> خروج
+        </button>
+    </div>
+
+    <!-- Founder Panel -->
+    <div class="founder-panel" id="founderPanel">
+        <div class="founder-header">
+            <h2 class="founder-title">
+                <i class="fas fa-crown"></i> لوحة الفاوندر - نواف
+                <span class="update-badge">v2.0</span>
+            </h2>
+            <button class="founder-close" onclick="hidePanel('founderPanel')">
+                <i class="fas fa-times"></i> إغلاق
+            </button>
+        </div>
+        
+        <div class="founder-grid">
+            <!-- نظام البث -->
+            <div class="founder-card">
+                <h3 class="founder-card-title">
+                    <i class="fas fa-broadcast-tower"></i> نظام البث العالمي
+                </h3>
+                <textarea class="founder-input" id="globalMessage" placeholder="أدخل رسالة البث العالمية..." rows="4"></textarea>
+                <select class="founder-input" id="messageType">
+                    <option value="announcement">إعلان عام</option>
+                    <option value="warning">تحذير</option>
+                    <option value="update">تحديث</option>
+                    <option value="event">فعالية</option>
+                </select>
+                <button class="founder-btn success" onclick="sendGlobalMessage()" style="width: 100%; margin-top: 10px;">
+                    <i class="fas fa-paper-plane"></i> بث الآن
+                </button>
+            </div>
+            
+            <!-- إدارة اللاعبين -->
+            <div class="founder-card">
+                <h3 class="founder-card-title">
+                    <i class="fas fa-user-shield"></i> إدارة اللاعبين
+                </h3>
+                <input type="text" class="founder-input" id="advPlayerName" placeholder="اسم اللاعب">
+                <select class="founder-input" id="advPlayerAction">
+                    <option value="">اختر الإجراء</option>
+                    <option value="inventory_check">فحص المخزون</option>
+                    <option value="location_track">تتبع الموقع</option>
+                    <option value="economy_audit">تدقيق الاقتصاد</option>
+                    <option value="permission_edit">تعديل الصلاحيات</option>
+                </select>
+                <button class="founder-btn primary" onclick="advancedPlayerAction()" style="width: 100%; margin-top: 10px;">
+                    <i class="fas fa-play"></i> تنفيذ
+                </button>
+            </div>
+            
+            <!-- النظام الأمني -->
+            <div class="founder-card">
+                <h3 class="founder-card-title">
+                    <i class="fas fa-shield-alt"></i> النظام الأمني
+                </h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <button class="founder-btn" onclick="toggleAntiCheat()" id="antiCheatBtn">
+                        <i class="fas fa-user-secret"></i> Anti-Cheat
+                    </button>
+                    <button class="founder-btn" onclick="toggleAutoMod()" id="autoModBtn">
+                        <i class="fas fa-robot"></i> Auto-Mod
+                    </button>
+                </div>
+                <button class="founder-btn danger" onclick="initiateLockdown()" style="width: 100%; margin-top: 15px;">
+                    <i class="fas fa-lock"></i> تفعيل الحظر الشامل
+                </button>
+            </div>
+            
+            <!-- النظام الاقتصادي -->
+            <div class="founder-card">
+                <h3 class="founder-card-title">
+                    <i class="fas fa-coins"></i> النظام الاقتصادي
+                </h3>
+                <input type="text" class="founder-input" id="economyPlayer" placeholder="اسم اللاعب">
+                <input type="number" class="founder-input" id="economyAmount" placeholder="المبلغ">
+                <select class="founder-input" id="economyAction">
+                    <option value="add">إضافة أموال</option>
+                    <option value="remove">سحب أموال</option>
+                    <option value="set">تعيين مبلغ</option>
+                </select>
+                <button class="founder-btn success" onclick="manageEconomy()" style="width: 100%; margin-top: 10px;">
+                    <i class="fas fa-check"></i> تطبيق
+                </button>
+            </div>
+        </div>
+        
+        <!-- إحصائيات حية -->
+        <div style="padding: var(--spacing-xl); max-width: 1400px; margin: 0 auto;">
+            <div class="founder-card">
+                <h3 class="founder-card-title">
+                    <i class="fas fa-tachometer-alt"></i> إحصائيات حية
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md);">
+                    <div style="background: linear-gradient(135deg, rgba(0, 201, 167, 0.2), rgba(0, 150, 136, 0.2)); padding: var(--spacing-md); border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: #00C9A7;" id="livePlayers">0</div>
+                        <div style="color: var(--text-secondary);">لاعبون متصلون</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(212, 175, 55, 0.2)); padding: var(--spacing-md); border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: #FFD700;" id="liveTPS">20</div>
+                        <div style="color: var(--text-secondary);">TPS السيرفر</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(65, 105, 225, 0.2), rgba(138, 43, 226, 0.2)); padding: var(--spacing-md); border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: #4169E1;" id="liveMemory">85%</div>
+                        <div style="color: var(--text-secondary);">استخدام الذاكرة</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(220, 20, 60, 0.2), rgba(139, 0, 0, 0.2)); padding: var(--spacing-md); border-radius: 15px; text-align: center;">
+                        <div style="font-size: 2.5rem; color: #DC143C;" id="liveWarnings">0</div>
+                        <div style="color: var(--text-secondary);">تحذيرات نشطة</div>
+                    </div>
+                </div>
+                <button class="founder-btn" onclick="refreshLiveStats()" style="width: 100%; margin-top: 15px;">
+                    <i class="fas fa-sync-alt"></i> تحديث الإحصائيات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Control Panel -->
+    <div class="control-panel" id="fullControlPanel">
+        <div class="panel-header">
+            <h2 class="panel-title">👑 لوحة التحكم الكاملة</h2>
+            <button class="panel-close" onclick="hidePanel('fullControlPanel')">إغلاق</button>
+        </div>
+        
+        <div class="panel-grid">
+            <div class="control-card">
+                <h3 class="card-title"><i class="fas fa-cog"></i> إعدادات السيرفر</h3>
+                <input type="text" class="card-input" id="serverIP" placeholder="IP السيرفر" value="play.nasscraft.com">
+                <input type="text" class="card-input" id="serverVersion" placeholder="الإصدار" value="1.20.4">
+                <input type="text" class="card-input" id="serverSlots" placeholder="عدد السلاكات" value="150">
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="card-btn" onclick="updateServerSettings()">تحديث</button>
+                    <button class="card-btn" onclick="restartServer()" style="background: var(--mc-orange);">إعادة تشغيل</button>
+                </div>
+            </div>
+            
+            <div class="control-card">
+                <h3 class="card-title"><i class="fas fa-users"></i> إدارة اللاعبين</h3>
+                <input type="text" class="card-input" id="playerName" placeholder="اسم اللاعب">
+                <select class="card-input" id="playerAction">
+                    <option value="">اختر الإجراء</option>
+                    <option value="kick">طرد</option>
+                    <option value="ban">حظر</option>
+                    <option value="tempban">حظر مؤقت</option>
+                    <option value="mute">كتم</option>
+                    <option value="warn">تحذير</option>
+                </select>
+                <input type="text" class="card-input" id="playerReason" placeholder="السبب">
+                <button class="card-btn" onclick="managePlayer()">تطبيق</button>
+            </div>
+            
+            <div class="control-card">
+                <h3 class="card-title"><i class="fas fa-clipboard-list"></i> إدارة سجلات التحذيرات</h3>
+                <input type="text" class="card-input" id="warningPlayer" placeholder="اسم اللاعب">
+                <select class="card-input" id="warningLevel">
+                    <option value="">مستوى التحذير</option>
+                    <option value="I">I - تحذير بسيط</option>
+                    <option value="II">II - إنذار</option>
+                    <option value="III">III - عقوبة متوسطة</option>
+                    <option value="IV">IV - عقوبة شديدة</option>
+                    <option value="V">V - عقوبة نهائية</option>
+                </select>
+                <button class="card-btn" onclick="addWarning()">إضافة تحذير</button>
+                <button class="card-btn" onclick="clearOldWarnings()" style="background: var(--royal-red);">حذف القديمة</button>
+            </div>
+            
+            <div class="control-card">
+                <h3 class="card-title"><i class="fas fa-chart-line"></i> الإحصائيات المتقدمة</h3>
+                <p style="color: var(--text-secondary);">اللاعبون النشطون: <span id="activePlayers">47</span></p>
+                <p style="color: var(--text-secondary);">الزيارات اليوم: <span id="dailyVisits">62</span></p>
+                <p style="color: var(--text-secondary);">الدخل اليومي: <span id="dailyIncome">$349.99</span></p>
+                <p style="color: var(--text-secondary);">التحذيرات اليوم: <span id="dailyWarnings">0</span></p>
+                <button class="card-btn" onclick="refreshStats()">تحديث</button>
+            </div>
+        </div>
+        
+        <div class="visitors-list" style="margin: var(--spacing-xl);">
+            <h3 class="visitors-title"><i class="fas fa-history"></i> سجل النشاطات الأخيرة</h3>
+            <div id="activityLog">
+                <!-- Activity log will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="message-modal" id="messageModal">
+        <div class="message-box">
+            <div id="messageContent"></div>
+            <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px;">
+                <button class="founder-btn" onclick="closeMessageModal()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent" style="display: none;">
+        <!-- Header -->
+        <header class="header" data-theme="rules">
+            <div class="header-content">
+                <h1 class="server-title">
+                    NASSCRAFT <span class="update-badge">نسخة ملكية 👑</span>
+                </h1>
+                <p class="server-subtitle">
+                    المملكة العربية لماين كرافت | إصدار ملكي متكامل بأحدث الأنظمة والتقنيات
+                </p>
+                
+                <div class="server-info">
+                    <div class="info-item">
+                        <div class="info-label">🌐 IP المملكة</div>
+                        <div class="info-value" id="serverIPDisplay">play.nasscraft.com</div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">👥 الفرسان المتصلين</div>
+                        <div class="info-value">
+                            <i class="fas fa-users"></i>
+                            <span class="online-players" id="playerCount">47</span>
+                            <small style="color: var(--text-muted); font-size: 0.9rem;">/150</small>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">⚡ حالة المملكة</div>
+                        <div class="info-value" id="serverStatusDisplay" style="color: var(--royal-emerald);">
+                            <i class="fas fa-circle" style="font-size: 0.8rem;"></i> نشطة
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-label">🎮 إصدار المملكة</div>
+                        <div class="info-value" id="serverVersionDisplay">1.20.4</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <div class="nav-scroll" id="navScroll">
+                <button class="nav-btn active" data-target="rules" data-theme="rules">📜 دستور المملكة</button>
+                <button class="nav-btn" data-target="news" data-theme="news">📢 بلاط الأخبار</button>
+                <button class="nav-btn" data-target="owner" data-theme="owner">👑 العائلة المالكة</button>
+                <button class="nav-btn" data-target="punish" data-theme="punish">⚖️ نظام العقوبات</button>
+                <button class="nav-btn" data-target="warnings-log" data-theme="warnings-log">📋 سجلات العدالة</button>
+                <button class="nav-btn" data-target="store" data-theme="store">🛒 خزينة المملكة</button>
+                <button class="nav-btn" data-target="ranks" data-theme="ranks">💎 نظام النبلاء</button>
+                <button class="nav-btn" data-target="map" data-theme="map">🗺️ خرائط المملكة</button>
+                <button class="nav-btn" data-target="events" data-theme="events">🎉 حفلات القصر</button>
+                <button class="nav-btn" data-target="auction" data-theme="auction">⚖️ سوق المزادات</button>
+                <button class="nav-btn" data-target="blacklist" data-theme="blacklist">🚫 قائمة المنبوذين</button>
+                <button class="nav-btn" data-target="court" data-theme="court">🏛️ محكمة المملكة</button>
+                <button class="nav-btn" data-target="guides" data-theme="guides">📚 مكتبة المعرفة</button>
+                <button class="nav-btn" data-target="vote" data-theme="vote">🗳️ مجلس الشورى</button>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="container">
+            <!-- Rules Section -->
+            <section id="rules" class="content-section active" data-theme="rules">
+                <div class="section-header">
+                    <h2 class="section-title">📜 دستور المملكة (50 قانون)</h2>
+                    <p class="section-subtitle">قوانين وأحكام مملكة NASSCRAFT التي تحكم العلاقات وتضمن استمرارية ازدهار المملكة</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="rules-grid" id="rulesGrid">
+                        <!-- القوانين سيتم تحميلها -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- News Section -->
+            <section id="news" class="content-section" data-theme="news">
+                <div class="section-header">
+                    <h2 class="section-title">📢 بلاط الأخبار</h2>
+                    <p class="section-subtitle">آخر التحديثات والإعلانات المهمة في مملكة NASSCRAFT</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="news-grid" id="newsGrid">
+                        <!-- الأخبار سيتم تحميلها -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Owner Section -->
+            <section id="owner" class="content-section" data-theme="owner">
+                <div class="section-header">
+                    <h2 class="section-title">👑 العائلة المالكة</h2>
+                    <p class="section-subtitle">حكام ومشرفو مملكة NASSCRAFT، المسؤولون عن ازدهار وتطور المملكة</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="owner-grid">
+                        <!-- الفاوندر نواف -->
+                        <div class="owner-card">
+                            <div class="owner-badge">المالك</div>
+                            <div class="owner-icon">👑</div>
+                            <div class="owner-avatar">ن</div>
+                            <h3 class="owner-name">نواف</h3>
+                            <p class="owner-role">المالك والمطور الرئيسي</p>
+                            <p class="owner-desc">
+                                مؤسس ومطور مملكة NASSCRAFT<br>
+                                مسؤول عن جميع أنظمة المملكة<br>
+                                له صلاحيات إمبراطورية كاملة
+                            </p>
+                            <div class="owner-power">
+                                <span class="power-badge"><i class="fas fa-crown"></i> مالك</span>
+                                <span class="power-badge"><i class="fas fa-code"></i> مطور</span>
+                                <span class="power-badge"><i class="fas fa-shield-alt"></i> مدير</span>
+                            </div>
+                        </div>
+                        
+                        <!-- النائب ملوك -->
+                        <div class="owner-card">
+                            <div class="owner-badge" style="background: linear-gradient(45deg, #4169E1, #8A2BE2);">النائب</div>
+                            <div class="owner-icon">🛡️</div>
+                            <div class="owner-avatar">م</div>
+                            <h3 class="owner-name">ملوك</h3>
+                            <p class="owner-role">نائب المالك ومدير الإدارة</p>
+                            <p class="owner-desc">
+                                يدير فريق الإدارة ويشرف على العمليات اليومية<br>
+                                له صلاحيات إدارية متقدمة<br>
+                                يتابع التذاكر ويحل المشاكل اليومية
+                            </p>
+                            <div class="owner-power">
+                                <span class="power-badge" style="background: rgba(65, 105, 225, 0.15); border-color: rgba(65, 105, 225, 0.3); color: #4169E1;">
+                                    <i class="fas fa-user-shield"></i> نائب
+                                </span>
+                                <span class="power-badge" style="background: rgba(65, 105, 225, 0.15); border-color: rgba(65, 105, 225, 0.3); color: #4169E1;">
+                                    <i class="fas fa-users-cog"></i> مدير
+                                </span>
+                                <span class="power-badge" style="background: rgba(65, 105, 225, 0.15); border-color: rgba(65, 105, 225, 0.3); color: #4169E1;">
+                                    <i class="fas fa-headset"></i> دعم
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Visitors Panel -->
+                    <div class="visitors-panel">
+                        <h3 class="visitors-title"><i class="fas fa-user-clock"></i> النبلاء الزائرين الآن</h3>
+                        <div id="currentVisitors">
+                            <p style="color: var(--text-secondary); text-align: center;">
+                                جارٍ تحميل قائمة النبلاء...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Punish Section (نظام التحذيرات) -->
+            <section id="punish" class="content-section" data-theme="punish">
+                <div class="section-header">
+                    <h2 class="section-title">⚖️ نظام العقوبات</h2>
+                    <p class="section-subtitle">نظام متدرج للتحذيرات والعقوبات في مملكة NASSCRAFT</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="rules-grid" id="warningsSystemGrid">
+                        <!-- نظام التحذيرات سيتم تحميله -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Warnings Log Section -->
+            <section id="warnings-log" class="content-section" data-theme="warnings-log">
+                <div class="section-header">
+                    <h2 class="section-title">📋 سجلات العدالة</h2>
+                    <p class="section-subtitle">سجل كامل لجميع التحذيرات المعطاة للاعبين في مملكة NASSCRAFT</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="visitors-panel">
+                        <h3 class="visitors-title"><i class="fas fa-history"></i> إحصائيات التحذيرات</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+                            <div style="background: rgba(255, 215, 0, 0.1); padding: var(--spacing-md); border-radius: 10px; text-align: center;">
+                                <div style="font-size: 2rem; color: var(--mc-gold);" id="totalWarnings">0</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">إجمالي التحذيرات</div>
+                            </div>
+                            <div style="background: rgba(255, 140, 0, 0.1); padding: var(--spacing-md); border-radius: 10px; text-align: center;">
+                                <div style="font-size: 2rem; color: #FF8C00;" id="activeWarnings">0</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">تحذيرات نشطة</div>
+                            </div>
+                            <div style="background: rgba(255, 69, 0, 0.1); padding: var(--spacing-md); border-radius: 10px; text-align: center;">
+                                <div style="font-size: 2rem; color: #FF4500;" id="warningLevelIII">0</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">مستوى III فما فوق</div>
+                            </div>
+                            <div style="background: rgba(139, 0, 0, 0.1); padding: var(--spacing-md); border-radius: 10px; text-align: center;">
+                                <div style="font-size: 2rem; color: #8B0000;" id="warningLevelV">0</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem;">مستوى V</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-md);">
+                            <button class="card-btn" onclick="refreshWarningsLog()" style="background: var(--royal-blue);">
+                                <i class="fas fa-sync-alt"></i> تحديث
+                            </button>
+                            <button class="card-btn" onclick="exportWarningsLog()" style="background: var(--royal-emerald);">
+                                <i class="fas fa-download"></i> تصدير
+                            </button>
+                        </div>
+                        
+                        <table class="warnings-table" id="warningsLogTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اللاعب</th>
+                                    <th>المستوى</th>
+                                    <th>السبب</th>
+                                    <th>المشرف</th>
+                                    <th>التاريخ</th>
+                                    <th>الحالة</th>
+                                </tr>
+                            </thead>
+                            <tbody id="warningsLogBody">
+                                <!-- سجلات التحذيرات سيتم تحميلها -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Store Section -->
+            <section id="store" class="content-section" data-theme="store">
+                <div class="section-header">
+                    <h2 class="section-title">🛒 خزينة المملكة</h2>
+                    <p class="section-subtitle">40+ عنصر متاح للشراء بالدولار والدايموند في متجر NASSCRAFT</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="store-items" id="storeItems">
+                        <!-- المتجر سيتم تحميله -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ranks Section -->
+            <section id="ranks" class="content-section" data-theme="ranks">
+                <div class="section-header">
+                    <h2 class="section-title">💎 نظام النبلاء</h2>
+                    <p class="section-subtitle">رتب متدرجة بمميزات وأسعار مختلفة تناسب جميع اللاعبين</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="ranks-grid" id="ranksGrid">
+                        <!-- الرتب سيتم تحميلها -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section id="map" class="content-section" data-theme="map">
+                <div class="section-header">
+                    <h2 class="section-title">🗺️ خرائط المملكة</h2>
+                    <p class="section-subtitle">خريطة حية لسيرفر NASSCRAFT تمكنك من استكشاف العالم ومشاهدة المناطق المختلفة</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">🗺️</div>
+                            <div class="card-content">
+                                <h3>الخريطة التفاعلية الكاملة</h3>
+                                <p>خريطة حية تظهر جميع مناطق المملكة مع تحديثات فورية.</p>
+                            </div>
+                        </div>
+                        
+                        <div id="mapContent">
+                            <div style="background: rgba(0, 255, 170, 0.1); padding: var(--spacing-lg); border-radius: 10px; text-align: center;">
+                                <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">🗺️</div>
+                                <h3 style="color: var(--mc-blue); margin-bottom: var(--spacing-sm);">خريطة NASSCRAFT</h3>
+                                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                                    تظهر الخريطة جميع المناطق الرئيسية في المملكة مع تحديثات حية للمواقع
+                                </p>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md);">
+                                    <div style="background: rgba(255,255,255,0.05); padding: var(--spacing-md); border-radius: 8px;">
+                                        <div style="color: var(--mc-blue); font-weight: bold;">📍 المدينة الملكية</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">المنطقة الرئيسية للتجارة والتجمعات</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.05); padding: var(--spacing-md); border-radius: 8px;">
+                                        <div style="color: var(--mc-blue); font-weight: bold;">🏔️ جبال الذهب</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">مناجم الموارد والمناطق الطبيعية</div>
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.05); padding: var(--spacing-md); border-radius: 8px;">
+                                        <div style="color: var(--mc-blue); font-weight: bold;">🏰 قلعة المالك</div>
+                                        <div style="color: var(--text-secondary); font-size: 0.9rem;">المباني التاريخية والدفاعية</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-lg);">
+                            <h4 style="color: var(--mc-blue); margin-bottom: var(--spacing-md);">✨ فوائد الخريطة:</h4>
+                            <ul class="benefits-list">
+                                <li>استكشاف المناطق الجديدة بسهولة</li>
+                                <li>تحديد مواقع الموارد الهامة</li>
+                                <li>تخطيط رحلات الاستكشاف</li>
+                                <li>مشاهدة مواقع اللاعبين الآخرين</li>
+                                <li>اكتشاف المناطق الآمنة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section id="events" class="content-section" data-theme="events">
+                <div class="section-header">
+                    <h2 class="section-title">🎉 حفلات القصر</h2>
+                    <p class="section-subtitle">فعاليات أسبوعية وشهرية مع جوائز قيمة لجميع اللاعبين</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="events-grid" id="eventsGrid">
+                        <!-- الفعاليات سيتم تحميلها -->
+                    </div>
+                    
+                    <div class="content-card">
+                        <h4 style="color: var(--royal-red); margin-bottom: var(--spacing-md);">🔥 فوائد المشاركة في الفعاليات:</h4>
+                        <ul class="benefits-list">
+                            <li>ربح جوائز قيمة وعملات مجانية</li>
+                            <li>تحسين مهاراتك في اللعبة</li>
+                            <li>التعرف على لاعبين جدد</li>
+                            <li>زيادة المتعة والتنوع في اللعب</li>
+                            <li>فرصة الظهور في قائمة المتصدرين</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Auction Section -->
+            <section id="auction" class="content-section" data-theme="auction">
+                <div class="section-header">
+                    <h2 class="section-title">⚖️ سوق المزادات</h2>
+                    <p class="section-subtitle">بيع وشراء العناصر النادرة في سوق المزادات المتطور</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚖️</div>
+                            <div class="card-content">
+                                <h3>سوق المزادات المتقدم</h3>
+                                <p>مكان لبيع وشراء العناصر النادرة بين اللاعبين بأمان وموثوقية.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-md);">
+                            <h4 style="color: #9D4EDD; margin-bottom: var(--spacing-sm);">📊 كيفية العمل:</h4>
+                            <ol style="color: var(--text-secondary); padding-right: 20px; line-height: 1.8;">
+                                <li>عرض العنصر للبيع في السوق</li>
+                                <li>تحديد سعر البدء ومدة المزاد</li>
+                                <li>اللاعبون الآخرون يقدمون عروضهم</li>
+                                <li>الفائز يحصل على العنصر عند انتهاء المزاد</li>
+                                <li>الدفع آمن ومضمون من خلال النظام</li>
+                            </ol>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-lg);">
+                            <h4 style="color: #9D4EDD; margin-bottom: var(--spacing-md);">💎 فوائد سوق المزادات:</h4>
+                            <ul class="benefits-list">
+                                <li>بيع العناصر النادرة بأعلى سعر</li>
+                                <li>شراء عناصر نادرة بأسعار مناسبة</li>
+                                <li>نظام آمن ومضمون للدفع</li>
+                                <li>فرصة ربح عملات إضافية</li>
+                                <li>تنشيط الاقتصاد الداخلي للمملكة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blacklist Section -->
+            <section id="blacklist" class="content-section" data-theme="blacklist">
+                <div class="section-header">
+                    <h2 class="section-title">🚫 قائمة المنبوذين</h2>
+                    <p class="section-subtitle">لاعبون محظورون بسبب مخالفات جسيمة في مملكة NASSCRAFT</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="visitors-panel">
+                        <h3 class="visitors-title"><i class="fas fa-ban"></i> اللاعبون المحظورون</h3>
+                        <div id="blacklistGrid">
+                            <!-- القائمة السوداء سيتم تحميلها -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Court Section -->
+            <section id="court" class="content-section" data-theme="court">
+                <div class="section-header">
+                    <h2 class="section-title">🏛️ محكمة المملكة</h2>
+                    <p class="section-subtitle">نظام عدالة متكامل لحل النزاعات والظلامات بين اللاعبين</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚖️</div>
+                            <div class="card-content">
+                                <h3>نظام المحكمة المتكامل</h3>
+                                <p>مكان لتقديم الشكاوى والنزاعات بين اللاعبين ليتم حلها بإنصاف وعدالة.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-md);">
+                            <h4 style="color: #7209B7; margin-bottom: var(--spacing-sm);">📝 كيفية تقديم قضية:</h4>
+                            <ol style="color: var(--text-secondary); padding-right: 20px; line-height: 1.8;">
+                                <li>تقديم طلب قضية مع ذكر الأدلة</li>
+                                <li>مراجعة الطلب من قبل المحكمة</li>
+                                <li>استدعاء الطرفين للاستماع لوجهات النظر</li>
+                                <li>إصدار الحكم بناءً على الأدلة واللوائح</li>
+                                <li>تنفيذ القرار من قبل الإدارة</li>
+                            </ol>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-lg);">
+                            <h4 style="color: #7209B7; margin-bottom: var(--spacing-md);">✨ فوائد نظام المحكمة:</h4>
+                            <ul class="benefits-list">
+                                <li>حل النزاعات بإنصاف وعدالة</li>
+                                <li>الحفاظ على حقوق جميع اللاعبين</li>
+                                <li>منع الظلم والاستبداد</li>
+                                <li>توفير بيئة لعب آمنة للجميع</li>
+                                <li>تعزيز الثقة في نظام المملكة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Guides Section -->
+            <section id="guides" class="content-section" data-theme="guides">
+                <div class="section-header">
+                    <h2 class="section-title">📚 مكتبة المعرفة</h2>
+                    <p class="section-subtitle">كل ما تحتاجه لبدء رحلتك في مملكة NASSCRAFT</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="guides-grid" id="guidesGrid">
+                        <!-- الدليل سيتم تحميله -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vote Section -->
+            <section id="vote" class="content-section" data-theme="vote">
+                <div class="section-header">
+                    <h2 class="section-title">🗳️ مجلس الشورى</h2>
+                    <p class="section-subtitle">صوّت لمملكة NASSCRAFT واحصل على مكافآت مجانية!</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div class="card-icon">🗳️</div>
+                            <div class="card-content">
+                                <h3>التصويت اليومي</h3>
+                                <p>صوّت لمملكة NASSCRAFT على مواقع التصويت الشهيرة واربح مكافآت مجانية كل يوم!</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-md);">
+                            <h4 style="color: #FF9E00; margin-bottom: var(--spacing-sm);">🎁 مكافآت التصويت:</h4>
+                            <ul style="color: var(--text-secondary); list-style: none; padding-right: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <span style="color: var(--mc-gold); font-weight: bold;">5,000 عملة</span> لكل موقع تصويت
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <span style="color: var(--mc-gold); font-weight: bold;">فرصة ربح رتبة VIP</span> عند التصويت 7 أيام متتالية
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <span style="color: var(--mc-gold); font-weight: bold;">هدايا عشوائية</span> يومية للمتصويتين
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div style="margin-top: var(--spacing-lg);">
+                            <h4 style="color: #FF9E00; margin-bottom: var(--spacing-md);">🔥 فوائد التصويت:</h4>
+                            <ul class="benefits-list">
+                                <li>مكافآت مجانية يومية</li>
+                                <li>مساعدة المملكة على النمو</li>
+                                <li>زيادة شهرة المملكة</li>
+                                <li>جذب لاعبين جدد</li>
+                                <li>فرصة ربح رتب خاصة</li>
+                            </ul>
+                        </div>
+                        
+                        <button class="buy-btn" onclick="voteNow()" style="margin-top: var(--spacing-md);">
+                            <i class="fas fa-vote-yea"></i> تصويت الآن
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div>
+                        <div class="footer-logo">NASSCRAFT</div>
+                        <p style="color: var(--text-secondary);">
+                            المملكة العربية لماين كرافت<br>
+                            الإصدار الملكي المتكامل 2026
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--mc-gold); margin-bottom: var(--spacing-sm);">👑 معلومات المملكة</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                            • IP: <span id="footerIP">play.nasscraft.com</span><br>
+                            • إصدار: Java/Bedrock<br>
+                            • حالة: <span id="footerStatus">نشطة</span>
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--mc-gold); margin-bottom: var(--spacing-sm);">⚡ إحصائيات سريعة</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                            • <span id="footerPlayers">47</span> فارس متصل<br>
+                            • 40+ عنصر في الخزينة<br>
+                            • نظام عقوبات متطور
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-copyright">
+                    © 2026 NASSCRAFT Kingdom | جميع الحقوق محفوظة<br>
+                    <small style="color: var(--text-muted);">
+                        المالك: نواف | النائب: ملوك | الإصدار الملكي الكامل
+                    </small>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Content Editor Panel -->
+    <div class="control-panel" id="contentEditorPanel">
+        <div class="panel-header">
+            <h2 class="panel-title">📝 محرر المحتوى</h2>
+            <button class="panel-close" onclick="hidePanel('contentEditorPanel')">إغلاق</button>
+        </div>
+        
+        <div class="panel-grid">
+            <div class="control-card">
+                <h3 class="card-title"><i class="fas fa-edit"></i> تعديل المحتوى</h3>
+                <div id="editorContent">
+                    <!-- المحتوى الذي يتم تعديله -->
+                </div>
+                <textarea class="editor-textarea" id="contentEditor" placeholder="أدخل المحتوى الجديد هنا..."></textarea>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="card-btn" onclick="saveEditedContent()" style="background: var(--royal-emerald);">حفظ</button>
+                    <button class="card-btn" onclick="cancelEdit()">إلغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // SYSTEM CONFIGURATION
+        // ============================================
+        
+        // 🔐 نظام المصادقة الملكي
+        const ROYAL_AUTHENTICATION = {
+            founder: {
+                username: "نواف",
+                password: "NNGA987",
+                role: "المالك"
+            },
+            vice: {
+                username: "ملوك",
+                password: "GREEN_MLOK",
+                role: "النائب"
+            }
+        };
+
+        // 👤 حالة المدير الحالي
+        let currentAdmin = null;
+        let serverOnline = true;
+        let serverSlots = 150;
+        let onlinePlayers = 47;
+        let editingContent = null;
+
+        // ⚙️ إعدادات المملكة
+        let royalConfig = {
+            ip: "play.nasscraft.com",
+            version: "1.20.4",
+            status: "نشطة",
+            maxPlayers: 150,
+            whitelist: false,
+            antiCheat: true,
+            autoMod: true
+        };
+
+        // 👥 سجل الزوار
+        let royalVisitors = [];
+        
+        // 📊 سجل النشاطات
+        let royalActivityLog = [];
+        
+        // 🔔 نظام الإشعارات
+        let notificationQueue = [];
+
+        // ⚠️ نظام التحذيرات (القواعد)
+        const warningSystem = [
+            { level: "I", title: "تحذير مستوى I", description: "مخالفات بسيطة مثل الرسائل غير اللائقة أو السبام الخفيف", penalty: "عقوبة: تحذير شفوي" },
+            { level: "II", title: "تحذير مستوى II", description: "تكرار المخالفات أو مخالفات متوسطة الخطورة", penalty: "عقوبة: ساعة حظر محادثة" },
+            { level: "III", title: "تحذير مستوى III", description: "مخالفات كبيرة مثل الغش البسيط أو التخريب المحدود", penalty: "عقوبة: سجن 24 ساعة" },
+            { level: "IV", title: "تحذير مستوى IV", description: "مخالفات خطيرة مثل النصب أو الاحتيال على اللاعبين", penalty: "عقوبة: حظر 7 أيام + استعادة الممتلكات" },
+            { level: "V", title: "تحذير مستوى V", description: "مخالفات جسيمة مثل استخدام الهاكس أو تخريب السيرفر", penalty: "عقوبة: حظر دائم فوري" }
+        ];
+
+        // 📋 سجلات التحذيرات
+        let warningsLog = [
+            { id: 1, player: "Hacker_Pro", level: "V", reason: "استخدام برامج غير قانونية (هاكس)", admin: "نواف", date: "2026-01-01", status: "نشط" },
+            { id: 2, player: "Scammer_99", level: "IV", reason: "نصب واحتيال على اللاعبين في الصفقات", admin: "ملوك", date: "2026-01-03", status: "منتهي" },
+            { id: 3, player: "Toxic_Player", level: "III", reason: "سب وشتم متكرر للاعبين", admin: "نواف", date: "2026-01-05", status: "نشط" },
+            { id: 4, player: "Griefer_X", level: "IV", reason: "تخريب ممتلكات لاعبين آخرين بدون إذن", admin: "ملوك", date: "2026-01-06", status: "نشط" },
+            { id: 5, player: "Spammer_123", level: "II", reason: "إرسال رسائل متكررة مزعجة (سبام)", admin: "نواف", date: "2026-01-07", status: "منتهي" }
+        ];
+
+        // 🚫 القائمة السوداء
+        let blacklist = [
+            { id: 1, player: "Hacker_Pro", reason: "هاكس وتعديلات غير قانونية", duration: "دائم", date: "2026-01-01", admin: "نواف" },
+            { id: 2, player: "Cheater_123", reason: "غش في البناء السريع", duration: "30 يوم", date: "2026-01-02", admin: "ملوك" },
+            { id: 3, player: "Scammer_99", reason: "نصب واحتيال على اللاعبين", duration: "90 يوم", date: "2026-01-03", admin: "نواف" }
+        ];
+
+        // 📰 الأخبار
+        let news = [
+            { id: 1, title: "تحديث النظام الملكي", content: "تم تحديث جميع أنظمة المملكة وتحسين الأداء بنسبة 300% مع إضافة مميزات جديدة", date: "٦ يناير ٢٠٢٦" },
+            { id: 2, title: "إضافة نظام المزادات الجديد", content: "تم إضافة سوق المزادات مع مميزات متقدمة للتجارة والبيع والشراء", date: "٥ يناير ٢٠٢٦" },
+            { id: 3, title: "فتح باب التقديم للإدارة", content: "نفتح باب التقديم للإدارة للمتميزين من اللاعبين، شروط التقديم متوفرة في الدليل", date: "٤ يناير ٢٠٢٦" },
+            { id: 4, title: "فعالية نهاية الأسبوع", content: "فعالية خاصة نهاية هذا الأسبوع مع جوائز قيمة تصل إلى 100,000 عملة!", date: "٣ يناير ٢٠٢٦" }
+        ];
+
+        // 📜 القوانين الكاملة (50 قانون)
+        const allRules = [
+            { number: 1, title: "احترام اللاعبين", description: "ممنوع السب أو الشتم أو الإهانة بأي شكل كان.", penalty: "عقوبة: تحذير → سجن 24 ساعة → حظر دائم" },
+            { number: 2, title: "منع الغش والهاكس", description: "ممنوع استخدام أي برامج غير قانونية أو تعديلات تخرب متعة السيرفر.", penalty: "عقوبة: حظر دائم فوري" },
+            { number: 3, title: "عدم استغلال الباقات", description: "ممنوع استغلال أي ثغرات في أنظمة الدفع أو الباقات.", penalty: "عقوبة: حظر + إزالة الرتب والمشتريات" },
+            { number: 4, title: "حماية الممتلكات", description: "ممنوع تدمير مباني اللاعبين الآخرين بدون إذن.", penalty: "عقوبة: تعويض + سجن 3 أيام" },
+            { number: 5, title: "التجارة العادلة", description: "يجب أن تكون جميع الصفقات واضحة وعادلة للطرفين.", penalty: "عقوبة: استعادة الممتلكات + تحذير" },
+            { number: 6, title: "منع الاحتيال", description: "ممنوع النصب أو الاحتيال على اللاعبين في الصفقات.", penalty: "عقوبة: حظر 7 أيام + استعادة الممتلكات" },
+            { number: 7, title: "الحفاظ على الأدب", description: "التحدث بأدب وعدم استخدام ألفاظ بذيئة.", penalty: "عقوبة: تحذير → حظر محادثة" },
+            { number: 8, title: "عدم الإزعاج", description: "ممنوع إزعاج اللاعبين بالسبام أو التكرار الممل.", penalty: "عقوبة: كتم مؤقت → سجن" },
+            { number: 9, title: "احترام الإدارة", description: "الامتثال لتوجيهات الإدارة والقوانين.", penalty: "عقوبة: تحذير → عقوبة إضافية" },
+            { number: 10, title: "منع التمييز", description: "ممنوع التمييز العنصري أو الديني أو الجنسي.", penalty: "عقوبة: حظر دائم" },
+            { number: 11, title: "حماية الخصوصية", description: "ممنوع نشر معلومات شخصية للاعبين.", penalty: "عقوبة: حظر 14 يوم" },
+            { number: 12, title: "التعاون مع الفريق", description: "المساعدة في الحفاظ على بيئة اللعب النظيفة.", penalty: "مكافأة: نقاط مميزة" },
+            { number: 13, title: "الإبلاغ عن المشاكل", description: "الإبلاغ عن أي مشاكل أو ثغرات فوراً.", penalty: "مكافأة: مكافآت خاصة" },
+            { number: 14, title: "عدم التنمر", description: "ممنوع التنمر أو التهديد بأي شكل.", penalty: "عقوبة: حظر 30 يوم" },
+            { number: 15, title: "اللعب النظيف", description: "الالتزام بروح اللعبة وعدم تخريب متعة الآخرين.", penalty: "عقوبة: حسب درجة المخالفة" },
+            { number: 16, title: "منع الإعلانات", description: "ممنوع الإعلان عن سيرفرات أخرى.", penalty: "عقوبة: حظر دائم" },
+            { number: 17, title: "احترام القوانين", description: "الالتزام بجميع القوانين المذكورة.", penalty: "عقوبة: تراكمية حسب المخالفات" },
+            { number: 18, title: "المشاركة الإيجابية", description: "تشجيع المشاركة الإيجابية في الفعاليات.", penalty: "مكافأة: نقاط وجوائز" },
+            { number: 19, title: "الصدق في اللعب", description: "عدم الادعاء بأشياء غير صحيحة.", penalty: "عقوبة: تحذير → عقوبة" },
+            { number: 20, title: "حماية البيئة", description: "عدم تخريب البيئة العامة للسيرفر.", penalty: "عقوبة: سجن + تعويض" },
+            { number: 21, title: "السلوك الحضاري", description: "التحلي بالأخلاق الحسنة في التعامل.", penalty: "عقوبة: تحذير → عقوبة" },
+            { number: 22, title: "منع التكتل السلبي", description: "ممنوع تشكيل عصابات لتخريب السيرفر.", penalty: "عقوبة: حظر جميع الأعضاء" },
+            { number: 23, title: "الالتزام بالأنظمة", description: "اتباع أنظمة السيرفر المختلفة.", penalty: "عقوبة: حسب النظام المخالف" },
+            { number: 24, title: "التعامل بلطف", description: "التعامل بلطف مع اللاعبين الجدد.", penalty: "مكافأة: نقاط سمعة" },
+            { number: 25, title: "عدم التجاوز", description: "عدم تجاوز الصلاحيات الممنوحة.", penalty: "عقوبة: سحب الصلاحيات" },
+            { number: 26, title: "الحفاظ على النظام", description: "المساعدة في الحفاظ على النظام العام.", penalty: "مكافأة: امتيازات خاصة" },
+            { number: 27, title: "منع الاحتكار", description: "عدم احتكار الموارد بشكل غير عادل.", penalty: "عقوبة: مصادرة الموارد" },
+            { number: 28, title: "الشفافية", description: "الوضوح في التعاملات والصفقات.", penalty: "عقوبة: تحذير → عقوبة" },
+            { number: 29, title: "التطور الإيجابي", description: "العمل على تطوير السيرفر بشكل إيجابي.", penalty: "مكافأة: رتب شرفية" },
+            { number: 30, title: "منع الاستفزاز", description: "عدم استفزاز اللاعبين عمداً.", penalty: "عقوبة: تحذير → عقوبة" },
+            { number: 31, title: "الالتزام بالوقت", description: "الالتزام بالمواعيد في الفعاليات.", penalty: "عقوبة: حرمان من الفعالية" },
+            { number: 32, title: "التسامح", description: "التسامح مع أخطاء الآخرين.", penalty: "مكافأة: نقاط أخلاق" },
+            { number: 33, title: "منع الاحتيال التقني", description: "عدم استغلال الثغرات التقنية.", penalty: "عقوبة: حظر دائم" },
+            { number: 34, title: "المسؤولية", description: "تحمل مسؤولية الأفعال داخل السيرفر.", penalty: "عقوبة: حسب الفعل" },
+            { number: 35, title: "التعاون", description: "التعاون مع اللاعبين في المشاريع.", penalty: "مكافأة: نقاط تعاون" },
+            { number: 36, title: "منع التخريب", description: "ممنوع تخريب ممتلكات السيرفر العامة.", penalty: "عقوبة: حظر 30 يوم + تعويض" },
+            { number: 37, title: "الإبداع", description: "تشجيع الإبداع في البناء والتطوير.", penalty: "مكافأة: جوائز إبداعية" },
+            { number: 38, title: "الصبر", description: "الصبر في التعامل مع الإدارة واللاعبين.", penalty: "مكافأة: نقاط صبر" },
+            { number: 39, title: "منع الانتحال", description: "ممنوع انتحال شخصية الإدارة.", penalty: "عقوبة: حظر دائم" },
+            { number: 40, title: "النزاهة", description: "النزاهة في جميع التعاملات.", penalty: "مكافأة: ثقة الإدارة" },
+            { number: 41, title: "التعلم", description: "الاستفادة من أخطاء الماضي.", penalty: "مكافأة: فرص ثانية" },
+            { number: 42, title: "منع التهديد", description: "ممنوع تهديد اللاعبين بأي شكل.", penalty: "عقوبة: حظر دائم" },
+            { number: 43, title: "التقدير", description: "تقدير جهود الإدارة واللاعبين.", penalty: "مكافأة: تقدير خاص" },
+            { number: 44, title: "الابتكار", description: "تشجيع الابتكار في المشاريع.", penalty: "مكافأة: دعم المشاريع" },
+            { number: 45, title: "منع الإحراج", description: "عدم إحراج اللاعبين علناً.", penalty: "عقوبة: اعتذار + عقوبة" },
+            { number: 46, title: "التواضع", description: "التواضع في النجاحات.", penalty: "مكافأة: احترام المجتمع" },
+            { number: 47, title: "منع التلاعب", description: "ممنوع التلاعب بأنظمة السيرفر.", penalty: "عقوبة: حظر + مصادرة" },
+            { number: 48, title: "المساهمة", description: "المساهمة في تطوير المجتمع.", penalty: "مكافأة: صلاحيات خاصة" },
+            { number: 49, title: "الولاء", description: "الولاء للسيرفر ومجتمعه.", penalty: "مكافأة: امتيازات دائمة" },
+            { number: 50, title: "الحفاظ على المتعة", description: "الحفاظ على متعة اللعب للجميع.", penalty: "مكافأة: استمرارية اللعب" }
+        ];
+
+        // 🛒 المتجر - 40+ عنصر
+        const storeItems = [
+            // عناصر بالدولار (1-20)
+            { id: 1, name: "باقة البداية 🎁", icon: "🎁", price: "9.99", currency: "دولار", description: "مبتدئ - 10,000 عملة + أدوات أساسية + سكن صغير" },
+            { id: 2, name: "باقة المتوسط ⚡", icon: "⚡", price: "24.99", currency: "دولار", description: "متوسط - 50,000 عملة + أدوات متوسطة + سكن متوسط" },
+            { id: 3, name: "باقة المتقدم 🔥", icon: "🔥", price: "49.99", currency: "دولار", description: "متقدم - 150,000 عملة + أدوات متقدمة + سكن كبير" },
+            { id: 4, name: "باقة المحترف 💎", icon: "💎", price: "99.99", currency: "دولار", description: "محترف - 500,000 عملة + أدوات نادرة + قصر خاص" },
+            { id: 5, name: "رتبة VIP 🥉", icon: "🥉", price: "29.99", currency: "دولار", description: "رتبة VIP شهرية مع مميزات خاصة" },
+            { id: 6, name: "رتبة VIP+ 🥈", icon: "🥈", price: "59.99", currency: "دولار", description: "رتبة VIP+ لمدة 3 أشهر" },
+            { id: 7, name: "رتبة MVP 🥇", icon: "🥇", price: "99.99", currency: "دولار", description: "رتبة MVP لمدة 6 أشهر" },
+            { id: 8, name: "رتبة MVP+ 💎", icon: "💎", price: "199.99", currency: "دولار", description: "رتبة MVP+ لمدة سنة كاملة" },
+            { id: 9, name: "سكن فاخر 🏠", icon: "🏠", price: "49.99", currency: "دولار", description: "سكن فاخر 30×30 مع ديكورات خاصة" },
+            { id: 10, name: "قصر ملكي 👑", icon: "👑", price: "149.99", currency: "دولار", description: "قصر ملكي 50×50 مع حديقة خاصة" },
+            { id: 11, name: "جزيرة خاصة 🏝️", icon: "🏝️", price: "299.99", currency: "دولار", description: "جزيرة خاصة 100×100 مع موارد حصرية" },
+            { id: 12, name: "أدوات ذهبية ⚒️", icon: "⚒️", price: "19.99", currency: "دولار", description: "مجموعة أدوات ذهبية مسبوكة بالكامل" },
+            { id: 13, name: "أدوات ماسية 💠", icon: "💠", price: "39.99", currency: "دولار", description: "مجموعة أدوات ماسية مسبوكة بالكامل" },
+            { id: 14, name: "أدوات نيتيرايت 🔥", icon: "🔥", price: "79.99", currency: "دولار", description: "مجموعة أدوات نيتيرايت مسبوكة بالكامل" },
+            { id: 15, name: "درع التنين 🐉", icon: "🐉", price: "89.99", currency: "دولار", description: "درع التنين الأسطوري الكامل" },
+            { id: 16, name: "سيف الأسطورة ⚔️", icon: "⚔️", price: "69.99", currency: "دولار", description: "سيف أسطوري مع تعويذات قوية" },
+            { id: 17, name: "قوس النينجا 🏹", icon: "🏹", price: "59.99", currency: "دولار", description: "قوس نينجا مع سهام لا تنتهي" },
+            { id: 18, name: "مجوهرات نادرة 💍", icon: "💍", price: "34.99", currency: "دولار", description: "مجموعة مجوهرات نادرة وحصرية" },
+            { id: 19, name: "كنز القراصنة 🏴‍☠️", icon: "🏴‍☠️", price: "129.99", currency: "دولار", description: "كنز القراصنة مع موارد نادرة" },
+            { id: 20, name: "صندوق الأسرار 🎲", icon: "🎲", price: "14.99", currency: "دولار", description: "صندوق أسرار يحتوي على مفاجآت" },
+
+            // عناصر بالدايموند (21-40)
+            { id: 21, name: "500 دايموند 💎", icon: "💎", price: "500", currency: "دايموند", description: "500 دايموند لاستخدامها في المتجر" },
+            { id: 22, name: "1,000 دايموند 💎💎", icon: "💎💎", price: "1,000", currency: "دايموند", description: "1,000 دايموند مع هدية إضافية" },
+            { id: 23, name: "2,500 دايموند 🔶", icon: "🔶", price: "2,500", currency: "دايموند", description: "2,500 دايموند + رتبة أسبوعية" },
+            { id: 24, name: "5,000 دايموند 🔷", icon: "🔷", price: "5,000", currency: "دايموند", description: "5,000 دايموند + رتبة شهرية" },
+            { id: 25, name: "10,000 دايموند 💠", icon: "💠", price: "10,000", currency: "دايموند", description: "10,000 دايموند + هدايا خاصة" },
+            { id: 26, name: "20,000 دايموند 💎✨", icon: "💎✨", price: "20,000", currency: "دايموند", description: "20,000 دايموند + مميزات حصرية" },
+            { id: 27, name: "عربة سريعة 🚗", icon: "🚗", price: "1,500", currency: "دايموند", description: "عربة سريعة للتنقل في السيرفر" },
+            { id: 28, name: "طائرة صغيرة ✈️", icon: "✈️", price: "3,000", currency: "دايموند", description: "طائرة صغيرة للطيران السريع" },
+            { id: 29, name: "سيارة دفع رباعي 🚙", icon: "🚙", price: "2,500", currency: "دايموند", description: "سيارة دفع رباعي للمناطق الوعرة" },
+            { id: 30, name: "قارب سريع 🚤", icon: "🚤", price: "1,800", currency: "دايموند", description: "قارب سريع للتنقل في المياه" },
+            { id: 31, name: "منطاد 🎈", icon: "🎈", price: "4,000", currency: "دايموند", description: "منطاد للطيران المرتفع" },
+            { id: 32, name: "مزرعة سحرية 🌾", icon: "🌾", price: "2,200", currency: "دايموند", description: "مزرعة سحرية تنمو بسرعة" },
+            { id: 33, name: "منجم ألماس ⛏️", icon: "⛏️", price: "3,500", currency: "دايموند", description: "منجم ألماس ينتج باستمرار" },
+            { id: 34, name: "مصنع ذهب 🏭", icon: "🏭", price: "4,500", currency: "دايموند", description: "مصنع ذهب آلي بالكامل" },
+            { id: 35, name: "مختبر سحري 🧪", icon: "🧪", price: "5,000", currency: "دايموند", description: "مختبر لصنع الأدوات السحرية" },
+            { id: 36, name: "مكتبة تعويذات 📚", icon: "📚", price: "2,800", currency: "دايموند", description: "مكتبة تحتوي على جميع التعويذات" },
+            { id: 37, name: "متحف تحف نادرة 🏛️", icon: "🏛️", price: "6,000", currency: "دايموند", description: "متحف لعرض التحف النادرة" },
+            { id: 38, name: "سيرك حيوانات 🎪", icon: "🎪", price: "3,200", currency: "دايموند", description: "سيرك يحتوي على حيوانات نادرة" },
+            { id: 39, name: "مدينة ملاهي 🎡", icon: "🎡", price: "7,500", currency: "دايموند", description: "مدينة ملاهي كاملة بالألعاب" },
+            { id: 40, name: "منتجع سياحي 🏖️", icon: "🏖️", price: "8,000", currency: "دايموند", description: "منتجع سياحي على الشاطئ" },
+            { id: 41, name: "قلعة قديمة 🏰", icon: "🏰", price: "10,000", currency: "دايموند", description: "قلعة قديمة مع أبراج دفاعية" },
+            { id: 42, name: "معبد أثري 🛕", icon: "🛕", price: "6,500", currency: "دايموند", description: "معبد أثري يحتوي على أسرار" }
+        ];
+
+        // 💎 نظام الرتب
+        const ranks = [
+            { 
+                id: 1, 
+                name: "VIP 🥉", 
+                icon: "🥉", 
+                price: "29.99 دولار", 
+                features: [
+                    "سكن خاص 20×20",
+                    "50,000 عملة",
+                    "أدوات مبدئية مسبوكة",
+                    "لون خاص في الشات",
+                    "دخول الأحداث العادية"
+                ] 
+            },
+            { 
+                id: 2, 
+                name: "VIP+ 🥈", 
+                icon: "🥈", 
+                price: "59.99 دولار", 
+                features: [
+                    "سكن كبير 30×30",
+                    "150,000 عملة",
+                    "أدوات متوسطة مسبوكة",
+                    "ألوان متعددة في الشات",
+                    "دخول الأحداث الخاصة",
+                    "صلاحية /hat"
+                ] 
+            },
+            { 
+                id: 3, 
+                name: "MVP 🥇", 
+                icon: "🥇", 
+                price: "99.99 دولار", 
+                features: [
+                    "قصر خاص 40×40",
+                    "500,000 عملة",
+                    "أدوات نادرة مسبوكة",
+                    "توقيع مميز",
+                    "دخول جميع الأحداث",
+                    "صلاحيات إضافية",
+                    "دعم فني متميز"
+                ] 
+            },
+            { 
+                id: 4, 
+                name: "MVP+ 💎", 
+                icon: "💎", 
+                price: "199.99 دولار", 
+                features: [
+                    "جزيرة خاصة 50×50",
+                    "1,000,000 عملة",
+                    "أدوات أسطورية مسبوكة",
+                    "تاج خاص في الشات",
+                    "دخول VIP للأحداث",
+                    "صلاحيات إدارية محدودة",
+                    "دعم فني 24/7",
+                    "رتبة شهرية مجانية"
+                ] 
+            }
+        ];
+
+        // 📚 الدليل
+        const guides = [
+            { id: 1, number: 1, title: "كيفية الانضمام للمملكة", description: "دليل مفصل لكيفية الانضمام لمملكة NASSCRAFT على جميع المنصات" },
+            { id: 2, number: 2, title: "شرح نظام النبلاء", description: "كل ما تحتاج معرفته عن نظام الرتب والمميزات الخاصة بكل رتبة" },
+            { id: 3, number: 3, title: "دليل البداية للمبتدئين", description: "خطوات البداية الصحيحة وكيفية تطوير نفسك بسرعة في المملكة" },
+            { id: 4, number: 4, title: "كيفية الربح من المملكة", description: "طرق مختلفة لربح العملات والمكافآت داخل المملكة" },
+            { id: 5, number: 5, title: "نظام التحذيرات والعقوبات", description: "شرح مفصل لنظام التحذيرات وكيفية تجنب العقوبات" },
+            { id: 6, number: 6, title: "دليل البناء المتقدم", description: "نصائح وحيل للبناء المتقدم والإبداعي في المملكة" }
+        ];
+
+        // 🎉 الفعاليات
+        const events = [
+            { id: 1, number: 1, title: "مسابقة البناء الأسبوعية 🏗️", description: "مسابقة بناء مع موضوع مختلف كل أسبوع. تقديم إبداعاتك واربح جوائز قيّمة!", penalty: "الجائزة: 50,000 عملة + رتبة أسبوعية" },
+            { id: 2, number: 2, title: "بطولة PvP الشهرية ⚔️", description: "بطولة قتال شهرية بين اللاعبين. شارك وأثبت مهارتك في القتال!", penalty: "الجائزة: 100,000 عملة + أدوات نادرة" },
+            { id: 3, number: 3, title: "حفلة نهاية الأسبوع 🎪", description: "حفلة أسبوعية مع ألعاب وتحديات ومفاجآت لكل المشاركين.", penalty: "الجائزة: هدايا عشوائية + جوائز مفاجئة" },
+            { id: 4, number: 4, title: "سباق التحدي 🏃‍♂️", description: "سباق محاكاة مع عقبات وتحديات مختلفة على مدار الساعة.", penalty: "الجائزة: 75,000 عملة + معدات خاصة" },
+            { id: 5, number: 5, title: "مسابقة الصيد 🎣", description: "مسابقة صيد للأسماك والكائنات النادرة في المملكة.", penalty: "الجائزة: 30,000 عملة + أدوات صيد نادرة" }
+        ];
+
+        // ============================================
+        // INITIALIZATION SYSTEM
+        // ============================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLoading();
+            setTimeout(() => {
+                loadAllData();
+                simulatePlayerCount();
+                trackVisitor();
+                initializeSystem();
+                loadSavedData();
+            }, 100);
+        });
+
+        function updateLoading() {
+            let loadingProgress = 0;
+            const progressBar = document.getElementById('loadingProgress');
+            const statusElement = document.getElementById('loadingStatus');
+            
+            const statusMessages = [
+                "جاري تحميل المملكة الملكية...",
+                "تهيئة النظام الإمبراطوري...",
+                "تحميل العائلة المالكة...",
+                "جيش المملكة يستعد...",
+                "تحميل دستور المملكة...",
+                "تهيئة نظام العدالة...",
+                "تحميل خزينة المملكة...",
+                "تفعيل نظام النبلاء...",
+                "إعداد خرائط المملكة...",
+                "المملكة جاهزة لاستقبالك!"
+            ];
+
+            let currentStatus = 0;
+            const interval = 300;
+            const loadingDuration = 3000;
+            
+            const loadingInterval = setInterval(() => {
+                loadingProgress += (100 / (loadingDuration / interval));
+                
+                if (loadingProgress >= 100) {
+                    loadingProgress = 100;
+                    clearInterval(loadingInterval);
+                    
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').classList.add('hidden');
+                        setTimeout(() => {
+                            document.getElementById('mainContent').style.display = 'block';
+                            initializeNavigation();
+                            showWelcomeNotification();
+                        }, 500);
+                    }, 500);
+                }
+                
+                progressBar.style.width = loadingProgress + '%';
+                
+                if (loadingProgress % 10 < 1) {
+                    statusElement.textContent = statusMessages[currentStatus % statusMessages.length];
+                    currentStatus++;
+                }
+            }, interval);
+        }
+
+        function initializeSystem() {
+            // تحديث الإحصائيات الحية
+            setInterval(updateLiveStats, 5000);
+            
+            // نظام الإشعارات التلقائي
+            setInterval(checkNotificationQueue, 5000);
+        }
+
+        function loadAllData() {
+            loadRules();
+            loadStoreItems();
+            loadRanks();
+            loadNews();
+            loadWarningSystem();
+            loadWarningsLog();
+            loadBlacklist();
+            loadGuides();
+            loadEvents();
+            updateWarningsStatistics();
+            updateVisitorsDisplay();
+        }
+
+        // ============================================
+        // AUTHENTICATION SYSTEM
+        // ============================================
+        
+        function showSecretLogin() {
+            document.getElementById('secretModal').classList.add('active');
+        }
+
+        function hideSecretModal() {
+            document.getElementById('secretModal').classList.remove('active');
+        }
+
+        function secretLogin() {
+            const username = document.getElementById('secretUsername').value.trim();
+            const password = document.getElementById('secretPassword').value.trim();
+            const error = document.getElementById('secretError');
+            
+            // فحص الفاوندر (نواف)
+            if (username === ROYAL_AUTHENTICATION.founder.username && 
+                password === ROYAL_AUTHENTICATION.founder.password) {
+                currentAdmin = { 
+                    type: 'founder', 
+                    name: username,
+                    role: ROYAL_AUTHENTICATION.founder.role
+                };
+                activateAdminControls();
+                hideSecretModal();
+                showRoyalNotification('success', `👑 مرحباً بك، ${currentAdmin.role} ${username}!`, 5000);
+                addActivity(`تسجيل دخول الفاوندر: ${username}`);
+                return;
+            }
+            
+            // فحص النائب (ملوك)
+            if (username === ROYAL_AUTHENTICATION.vice.username && 
+                password === ROYAL_AUTHENTICATION.vice.password) {
+                currentAdmin = { 
+                    type: 'vice', 
+                    name: username,
+                    role: ROYAL_AUTHENTICATION.vice.role
+                };
+                activateAdminControls();
+                hideSecretModal();
+                showRoyalNotification('info', `🛡️ أهلاً وسهلاً، ${currentAdmin.role} ${username}!`, 5000);
+                addActivity(`تسجيل دخول النائب: ${username}`);
+                return;
+            }
+            
+            error.style.display = 'block';
+            setTimeout(() => error.style.display = 'none', 3000);
+        }
+
+        function activateAdminControls() {
+            const adminControls = document.getElementById('adminControls');
+            adminControls.style.display = 'flex';
+            
+            // إخفاء أزرار الفاوندر للنائب
+            if (currentAdmin.type !== 'founder') {
+                document.querySelectorAll('.admin-btn.founder').forEach(btn => {
+                    btn.style.display = 'none';
+                });
+            }
+            
+            // تأثير مرئي
+            adminControls.classList.add('animate__animated', 'animate__fadeInRight');
+            setTimeout(() => {
+                adminControls.classList.remove('animate__animated', 'animate__fadeInRight');
+            }, 1000);
+        }
+
+        // ============================================
+        // NOTIFICATION SYSTEM
+        // ============================================
+        
+        function showRoyalNotification(type, message, duration = 5000) {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = message;
+            
+            container.appendChild(notification);
+            
+            // إضافة تأثير الدخول
+            notification.classList.add('animate__animated', 'animate__fadeInRight');
+            setTimeout(() => {
+                notification.classList.remove('animate__animated', 'animate__fadeInRight');
+            }, 300);
+            
+            // إزالة الإشعار بعد المدة
+            setTimeout(() => {
+                notification.classList.add('animate__animated', 'animate__fadeOutRight');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, duration);
+        }
+
+        function showWelcomeNotification() {
+            setTimeout(() => {
+                showRoyalNotification(
+                    'info',
+                    '👑 مرحباً بك في مملكة NASSCRAFT! استمتع بإقامتك في مملكتنا.',
+                    8000
+                );
+            }, 1000);
+        }
+
+        function checkNotificationQueue() {
+            if (notificationQueue.length > 0) {
+                const notification = notificationQueue.shift();
+                showRoyalNotification(notification.type, notification.message, notification.duration);
+            }
+        }
+
+        // ============================================
+        // PANEL MANAGEMENT
+        // ============================================
+        
+        function showPanel(panelId) {
+            document.getElementById(panelId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            if (panelId === 'founderPanel') {
+                updateLiveStats();
+                updateSecurityStatus();
+                addActivity('فتح اللوحة الملكية');
+            }
+        }
+
+        function hidePanel(panelId) {
+            document.getElementById(panelId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openFounderPanel() {
+            if (!currentAdmin || currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            showPanel('founderPanel');
+        }
+
+        function openFullControlPanel() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            showPanel('fullControlPanel');
+        }
+
+        // ============================================
+        // DATA LOADING FUNCTIONS
+        // ============================================
+        
+        function loadRules() {
+            const rulesGrid = document.getElementById('rulesGrid');
+            if (rulesGrid) {
+                rulesGrid.innerHTML = '';
+                
+                allRules.forEach(rule => {
+                    const ruleCard = document.createElement('div');
+                    ruleCard.className = 'rule-card';
+                    ruleCard.innerHTML = `
+                        <div class="rule-number">${rule.number}</div>
+                        <h3 class="rule-title">${rule.title}</h3>
+                        <p class="rule-desc">${rule.description}</p>
+                        <p class="rule-penalty">${rule.penalty}</p>
+                    `;
+                    rulesGrid.appendChild(ruleCard);
+                });
+            }
+        }
+
+        function loadNews() {
+            const newsGrid = document.getElementById('newsGrid');
+            if (newsGrid) {
+                newsGrid.innerHTML = '';
+                
+                news.forEach(item => {
+                    const newsCard = document.createElement('div');
+                    newsCard.className = 'news-card';
+                    newsCard.innerHTML = `
+                        <div class="rule-number">${item.id}</div>
+                        <h3 class="rule-title">${item.title}</h3>
+                        <p class="rule-desc">${item.content}</p>
+                        <p class="rule-penalty">تاريخ النشر: ${item.date}</p>
+                    `;
+                    newsGrid.appendChild(newsCard);
+                });
+            }
+        }
+
+        function loadStoreItems() {
+            const storeContainer = document.getElementById('storeItems');
+            if (storeContainer) {
+                storeContainer.innerHTML = '';
+                
+                storeItems.forEach(item => {
+                    const storeItem = document.createElement('div');
+                    storeItem.className = 'store-item';
+                    
+                    const priceDisplay = item.currency === 'دايموند' 
+                        ? `<span class="diamond">${item.price} 💎</span>`
+                        : `<span class="currency">$</span>${item.price}`;
+                    
+                    storeItem.innerHTML = `
+                        <div class="item-icon">${item.icon}</div>
+                        <h3 class="item-name">${item.name}</h3>
+                        <div class="item-price">${priceDisplay}</div>
+                        <p class="item-desc">${item.description}</p>
+                        <button class="buy-btn" onclick="buyItem(${item.id})">شراء الآن</button>
+                    `;
+                    storeContainer.appendChild(storeItem);
+                });
+            }
+        }
+
+        function loadRanks() {
+            const ranksContainer = document.getElementById('ranksGrid');
+            if (ranksContainer) {
+                ranksContainer.innerHTML = '';
+                
+                ranks.forEach(rank => {
+                    const rankCard = document.createElement('div');
+                    rankCard.className = 'rank-card';
+                    rankCard.innerHTML = `
+                        <div class="rank-badge">رتبة</div>
+                        <div class="rank-icon">${rank.icon}</div>
+                        <h3 class="rank-title">${rank.name}</h3>
+                        <div class="rank-price">${rank.price}</div>
+                        <ul class="rank-features">
+                            ${rank.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        <button class="buy-btn" onclick="buyRank(${rank.id})">شراء الرتبة</button>
+                    `;
+                    ranksContainer.appendChild(rankCard);
+                });
+            }
+        }
+
+        function loadWarningSystem() {
+            const warningsSystemGrid = document.getElementById('warningsSystemGrid');
+            if (warningsSystemGrid) {
+                warningsSystemGrid.innerHTML = '';
+                
+                warningSystem.forEach(warning => {
+                    const warningCard = document.createElement('div');
+                    warningCard.className = 'rule-card';
+                    warningCard.innerHTML = `
+                        <div class="rule-number warning-${warning.level}">${warning.level}</div>
+                        <h3 class="rule-title">${warning.title}</h3>
+                        <p class="rule-desc">${warning.description}</p>
+                        <p class="rule-penalty">${warning.penalty}</p>
+                    `;
+                    warningsSystemGrid.appendChild(warningCard);
+                });
+            }
+        }
+
+        function loadWarningsLog() {
+            const warningsLogBody = document.getElementById('warningsLogBody');
+            if (warningsLogBody) {
+                warningsLogBody.innerHTML = '';
+                
+                warningsLog.forEach((warning, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${warning.id}</td>
+                        <td><strong>${warning.player}</strong></td>
+                        <td><span class="warning-level warning-${warning.level}">${warning.level}</span></td>
+                        <td>${warning.reason}</td>
+                        <td>${warning.admin}</td>
+                        <td>${warning.date}</td>
+                        <td><span style="color: ${warning.status === 'نشط' ? '#00C9A7' : '#DC143C'}">${warning.status}</span></td>
+                    `;
+                    warningsLogBody.appendChild(row);
+                });
+            }
+        }
+
+        function loadBlacklist() {
+            const blacklistGrid = document.getElementById('blacklistGrid');
+            if (blacklistGrid) {
+                blacklistGrid.innerHTML = blacklist.map(banned => `
+                    <div class="rule-card">
+                        <div class="rule-number" style="background: var(--royal-red);">🚫</div>
+                        <h3 class="rule-title">${banned.player}</h3>
+                        <p class="rule-desc">${banned.reason}</p>
+                        <p class="rule-penalty">المدة: ${banned.duration} - التاريخ: ${banned.date}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function loadGuides() {
+            const guidesGrid = document.getElementById('guidesGrid');
+            if (guidesGrid) {
+                guidesGrid.innerHTML = '';
+                
+                guides.forEach(guide => {
+                    const guideCard = document.createElement('div');
+                    guideCard.className = 'guide-card';
+                    guideCard.innerHTML = `
+                        <div class="rule-number">${guide.number}</div>
+                        <h3 class="rule-title">${guide.title}</h3>
+                        <p class="rule-desc">${guide.description}</p>
+                        <button class="buy-btn" onclick="viewGuide(${guide.id})" style="background: var(--royal-blue);">عرض الدليل</button>
+                    `;
+                    guidesGrid.appendChild(guideCard);
+                });
+            }
+        }
+
+        function loadEvents() {
+            const eventsGrid = document.getElementById('eventsGrid');
+            if (eventsGrid) {
+                eventsGrid.innerHTML = '';
+                
+                events.forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = 'event-card';
+                    eventCard.innerHTML = `
+                        <div class="rule-number">${event.number}</div>
+                        <h3 class="rule-title">${event.title}</h3>
+                        <p class="rule-desc">${event.description}</p>
+                        <p class="rule-penalty">${event.penalty}</p>
+                    `;
+                    eventsGrid.appendChild(eventCard);
+                });
+            }
+        }
+
+        function updateWarningsStatistics() {
+            const totalWarnings = warningsLog.length;
+            const activeWarnings = warningsLog.filter(w => w.status === 'نشط').length;
+            const warningLevelIII = warningsLog.filter(w => ['III', 'IV', 'V'].includes(w.level)).length;
+            const warningLevelV = warningsLog.filter(w => w.level === 'V').length;
+            
+            if (document.getElementById('totalWarnings')) {
+                document.getElementById('totalWarnings').textContent = totalWarnings;
+            }
+            if (document.getElementById('activeWarnings')) {
+                document.getElementById('activeWarnings').textContent = activeWarnings;
+            }
+            if (document.getElementById('warningLevelIII')) {
+                document.getElementById('warningLevelIII').textContent = warningLevelIII;
+            }
+            if (document.getElementById('warningLevelV')) {
+                document.getElementById('warningLevelV').textContent = warningLevelV;
+            }
+            if (document.getElementById('dailyWarnings')) {
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('dailyWarnings').textContent = warningsLog.filter(w => w.date === today).length;
+            }
+        }
+
+        // ============================================
+        // VISITOR SYSTEM
+        // ============================================
+        
+        function trackVisitor() {
+            const visitorTitles = ['الفارس', 'النبيل', 'اللورد', 'الدوق'];
+            const visitorName = `${visitorTitles[Math.floor(Math.random() * visitorTitles.length)]}_${Math.floor(Math.random() * 999) + 1}`;
+            const visitTime = new Date().toLocaleTimeString('ar-SA');
+            
+            royalVisitors.push({
+                name: visitorName,
+                time: visitTime,
+                title: visitorTitles[Math.floor(Math.random() * visitorTitles.length)],
+                ip: `192.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`
+            });
+            
+            updateVisitorsDisplay();
+            saveData('visitors', royalVisitors);
+        }
+
+        function updateVisitorsDisplay() {
+            const currentVisitors = document.getElementById('currentVisitors');
+            if (currentVisitors && royalVisitors.length > 0) {
+                const lastVisitors = royalVisitors.slice(-5).reverse();
+                currentVisitors.innerHTML = lastVisitors.map(visitor => `
+                    <div class="visitor-item">
+                        <div>
+                            <div style="color: var(--mc-gold); font-weight: bold; font-family: 'VT323';">${visitor.name}</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">${visitor.title}</div>
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">${visitor.time}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ============================================
+        // LIVE STATISTICS
+        // ============================================
+        
+        function updateLiveStats() {
+            if (!document.getElementById('founderPanel')?.classList.contains('active')) return;
+            
+            // تحديث الإحصائيات الحية
+            document.getElementById('livePlayers').textContent = onlinePlayers;
+            document.getElementById('liveTPS').textContent = '20.0';
+            document.getElementById('liveMemory').textContent = `${Math.floor(Math.random() * 15) + 75}%`;
+            document.getElementById('liveWarnings').textContent = warningsLog.filter(w => w.status === 'نشط').length;
+        }
+
+        function refreshLiveStats() {
+            updateLiveStats();
+            showRoyalNotification('success', '🔄 تم تحديث الإحصائيات الحية', 2000);
+        }
+
+        // ============================================
+        // SECURITY SYSTEM
+        // ============================================
+        
+        function updateSecurityStatus() {
+            const statusElements = [
+                { id: 'antiCheatBtn', config: 'antiCheat' },
+                { id: 'autoModBtn', config: 'autoMod' }
+            ];
+            
+            statusElements.forEach(item => {
+                const element = document.getElementById(item.id);
+                if (element) {
+                    if (royalConfig[item.config]) {
+                        element.classList.add('success');
+                        element.innerHTML = `<i class="fas fa-check-circle"></i> ${element.textContent}`;
+                    } else {
+                        element.classList.remove('success');
+                        element.innerHTML = element.innerHTML.replace('<i class="fas fa-check-circle"></i> ', '');
+                    }
+                }
+            });
+        }
+
+        function toggleAntiCheat() {
+            royalConfig.antiCheat = !royalConfig.antiCheat;
+            updateSecurityStatus();
+            showRoyalNotification(
+                royalConfig.antiCheat ? 'success' : 'warning',
+                royalConfig.antiCheat ? '✅ تم تفعيل نظام Anti-Cheat' : '⚠️ تم إيقاف نظام Anti-Cheat',
+                3000
+            );
+            addActivity(royalConfig.antiCheat ? 'تفعيل Anti-Cheat' : 'إيقاف Anti-Cheat');
+        }
+
+        function toggleAutoMod() {
+            royalConfig.autoMod = !royalConfig.autoMod;
+            updateSecurityStatus();
+            showRoyalNotification(
+                royalConfig.autoMod ? 'success' : 'warning',
+                royalConfig.autoMod ? '✅ تم تفعيل نظام Auto-Mod' : '⚠️ تم إيقاف نظام Auto-Mod',
+                3000
+            );
+            addActivity(royalConfig.autoMod ? 'تفعيل Auto-Mod' : 'إيقاف Auto-Mod');
+        }
+
+        function initiateLockdown() {
+            if (confirm('🚨 هل أنت متأكد من تفعيل وضع الحظر الشامل؟\n\nسيتم:\n• إغلاق جميع الوظائف غير الأساسية\n• تفعيل أعلى مستويات الحماية')) {
+                showRoyalNotification('error', '🚨 تم تفعيل وضع الحظر الشامل!', 10000);
+                addActivity('تفعيل وضع الحظر الشامل');
+            }
+        }
+
+        // ============================================
+        // FOUNDER PANEL FUNCTIONS
+        // ============================================
+        
+        function sendGlobalMessage() {
+            const message = document.getElementById('globalMessage').value;
+            const type = document.getElementById('messageType').value;
+            
+            if (!message) {
+                showRoyalNotification('error', '❌ يرجى إدخال رسالة!', 3000);
+                return;
+            }
+            
+            showRoyalNotification('info', `📢 تم بث رسالة ${type} إلى جميع اللاعبين`, 5000);
+            addActivity(`بث رسالة ${type}: ${message.substring(0, 50)}...`);
+            
+            document.getElementById('globalMessage').value = '';
+        }
+
+        function advancedPlayerAction() {
+            const player = document.getElementById('advPlayerName').value;
+            const action = document.getElementById('advPlayerAction').value;
+            
+            if (!player || !action) {
+                showRoyalNotification('error', '❌ يرجى إدخال اسم اللاعب واختيار الإجراء!', 3000);
+                return;
+            }
+            
+            const actionMessages = {
+                inventory_check: `🔍 تم فحص مخزون اللاعب ${player}`,
+                location_track: `📍 تم تتبع موقع اللاعب ${player}`,
+                economy_audit: `💰 تم تدقيق اقتصاد اللاعب ${player}`,
+                permission_edit: `🔐 تم تعديل صلاحيات اللاعب ${player}`
+            };
+            
+            showRoyalNotification('success', actionMessages[action] || '✅ تم تنفيذ الإجراء بنجاح', 5000);
+            addActivity(`إجراء ${action} على اللاعب: ${player}`);
+            
+            document.getElementById('advPlayerName').value = '';
+            document.getElementById('advPlayerAction').value = '';
+        }
+
+        function manageEconomy() {
+            const player = document.getElementById('economyPlayer').value;
+            const amount = document.getElementById('economyAmount').value;
+            const action = document.getElementById('economyAction').value;
+            
+            if (!player || !amount) {
+                showRoyalNotification('error', '❌ يرجى إدخال اسم اللاعب والمبلغ!', 3000);
+                return;
+            }
+            
+            const actionMessages = {
+                add: `💰 تم إضافة ${amount} عملة للاعب ${player}`,
+                remove: `💰 تم سحب ${amount} عملة من اللاعب ${player}`,
+                set: `💰 تم تعيين رصيد اللاعب ${player} إلى ${amount} عملة`
+            };
+            
+            showRoyalNotification('success', actionMessages[action] || '✅ تم تنفيذ الإجراء بنجاح', 5000);
+            addActivity(`إجراء اقتصادي ${action} للاعب: ${player} - ${amount}`);
+            
+            document.getElementById('economyPlayer').value = '';
+            document.getElementById('economyAmount').value = '';
+        }
+
+        // ============================================
+        // ADMIN FUNCTIONS
+        // ============================================
+        
+        function toggleServerStatus() {
+            serverOnline = !serverOnline;
+            
+            const statusElement = document.getElementById('serverStatusDisplay');
+            const footerStatus = document.getElementById('footerStatus');
+            
+            if (serverOnline) {
+                statusElement.innerHTML = '<i class="fas fa-circle" style="font-size: 0.8rem;"></i> نشطة';
+                statusElement.style.color = '#00C9A7';
+                if (footerStatus) footerStatus.textContent = 'نشطة';
+                showRoyalNotification('success', '✅ تم تشغيل المملكة بنجاح!', 5000);
+                addActivity("تشغيل المملكة");
+            } else {
+                statusElement.innerHTML = '<i class="fas fa-circle" style="font-size: 0.8rem;"></i> مغلقة';
+                statusElement.style.color = '#DC143C';
+                if (footerStatus) footerStatus.textContent = 'مغلقة';
+                showRoyalNotification('error', '🛑 تم إغلاق المملكة!', 5000);
+                addActivity("إغلاق المملكة");
+            }
+        }
+
+        function managePlayers() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            
+            showPanel('fullControlPanel');
+        }
+
+        function addWarning() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            
+            const playerName = document.getElementById('warningPlayer').value;
+            const warningLevel = document.getElementById('warningLevel').value;
+            
+            if (!playerName || !warningLevel) {
+                showRoyalNotification('error', '❌ يرجى إدخال اسم اللاعب واختيار مستوى التحذير!', 3000);
+                return;
+            }
+            
+            const reason = prompt("أدخل سبب التحذير:");
+            if (!reason) return;
+            
+            const newWarning = {
+                id: warningsLog.length + 1,
+                player: playerName,
+                level: warningLevel,
+                reason: reason,
+                admin: currentAdmin.name,
+                date: new Date().toISOString().split('T')[0],
+                status: 'نشط'
+            };
+            
+            warningsLog.push(newWarning);
+            loadWarningsLog();
+            updateWarningsStatistics();
+            
+            showRoyalNotification('success', `✅ تم إضافة تحذير مستوى ${warningLevel} للاعب ${playerName}`, 5000);
+            addActivity(`إضافة تحذير ${warningLevel} للاعب: ${playerName}`);
+            saveData('warningsLog', warningsLog);
+            
+            document.getElementById('warningPlayer').value = '';
+            document.getElementById('warningLevel').value = '';
+        }
+
+        function clearOldWarnings() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            
+            if (confirm("⚠️ هل تريد حذف التحذيرات القديمة (المنتهية)؟")) {
+                const oldCount = warningsLog.length;
+                warningsLog = warningsLog.filter(w => w.status !== 'منتهي');
+                const newCount = warningsLog.length;
+                
+                loadWarningsLog();
+                updateWarningsStatistics();
+                
+                showRoyalNotification('success', `✅ تم حذف ${oldCount - newCount} تحذير منتهي`, 5000);
+                addActivity(`حذف التحذيرات المنتهية`);
+                saveData('warningsLog', warningsLog);
+            }
+        }
+
+        function refreshWarningsLog() {
+            loadWarningsLog();
+            updateWarningsStatistics();
+            showRoyalNotification('success', '✅ تم تحديث سجلات التحذيرات!', 3000);
+            addActivity("تحديث سجلات التحذيرات");
+        }
+
+        function exportWarningsLog() {
+            const dataStr = JSON.stringify(warningsLog, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `warnings_log_${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showRoyalNotification('success', '✅ تم تصدير سجلات التحذيرات!', 5000);
+            addActivity("تصدير سجلات التحذيرات");
+        }
+
+        function updateServerSettings() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            
+            const ip = document.getElementById('serverIP').value;
+            const version = document.getElementById('serverVersion').value;
+            const slots = parseInt(document.getElementById('serverSlots').value);
+            
+            if (ip && version && !isNaN(slots) && slots >= 10) {
+                royalConfig.ip = ip;
+                royalConfig.version = version;
+                serverSlots = slots;
+                royalConfig.maxPlayers = slots;
+                
+                // Update display
+                document.getElementById('serverIPDisplay').textContent = ip;
+                document.getElementById('serverVersionDisplay').textContent = version;
+                document.getElementById('footerIP').textContent = ip;
+                
+                showRoyalNotification('success', '✅ تم تحديث إعدادات المملكة بنجاح!', 5000);
+                addActivity(`تحديث إعدادات المملكة: ${ip} - ${version}`);
+                saveData('royalConfig', royalConfig);
+            } else {
+                showRoyalNotification('error', '❌ يرجى إدخال بيانات صحيحة!', 3000);
+            }
+        }
+
+        function refreshStats() {
+            document.getElementById('activePlayers').textContent = onlinePlayers;
+            document.getElementById('dailyVisits').textContent = royalVisitors.length;
+            updateWarningsStatistics();
+            
+            const dailyIncome = (onlinePlayers * 0.5) + (royalVisitors.length * 0.1);
+            document.getElementById('dailyIncome').textContent = `$${dailyIncome.toFixed(2)}`;
+            
+            showRoyalNotification('success', '✅ تم تحديث الإحصائيات!', 3000);
+            addActivity("تحديث الإحصائيات");
+        }
+
+        function restartServer() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            
+            if (confirm("⚠️ هل أنت متأكد من إعادة تشغيل المملكة؟\n\nسيتم قطع الاتصال عن جميع الفرسان مؤقتاً.")) {
+                showRoyalNotification('info', '🔄 جاري إعادة تشغيل المملكة...', 3000);
+                serverOnline = false;
+                
+                setTimeout(() => {
+                    serverOnline = true;
+                    showRoyalNotification('success', '✅ تم إعادة تشغيل المملكة بنجاح!', 5000);
+                    addActivity("إعادة تشغيل المملكة");
+                }, 3000);
+            }
+        }
+
+        function managePlayer() {
+            if (currentAdmin.type !== 'founder') {
+                showRoyalNotification('error', '❌ هذه الصلاحية للفاوندر فقط!', 3000);
+                return;
+            }
+            
+            const playerName = document.getElementById('playerName').value;
+            const action = document.getElementById('playerAction').value;
+            const reason = document.getElementById('playerReason').value;
+            
+            if (!playerName || !action) {
+                showRoyalNotification('error', '❌ يرجى إدخال اسم اللاعب واختيار الإجراء!', 3000);
+                return;
+            }
+            
+            let message = "";
+            switch(action) {
+                case "kick":
+                    message = `✅ تم طرد اللاعب ${playerName}`;
+                    break;
+                case "ban":
+                    message = `✅ تم حظر اللاعب ${playerName} بشكل دائم`;
+                    break;
+                case "tempban":
+                    message = `✅ تم حظر اللاعب ${playerName} مؤقتاً`;
+                    break;
+                case "mute":
+                    message = `✅ تم كتم اللاعب ${playerName}`;
+                    break;
+                case "warn":
+                    message = `✅ تم تحذير اللاعب ${playerName}`;
+                    break;
+            }
+            
+            if (reason) {
+                message += `\n📝 السبب: ${reason}`;
+            }
+            
+            showRoyalNotification('success', message, 5000);
+            addActivity(`إجراء ${action} على اللاعب: ${playerName}`);
+            
+            document.getElementById('playerName').value = '';
+            document.getElementById('playerAction').value = '';
+            document.getElementById('playerReason').value = '';
+        }
+
+        // ============================================
+        // PLAYER FUNCTIONS
+        // ============================================
+        
+        function simulatePlayerCount() {
+            const playerElement = document.getElementById('playerCount');
+            const footerPlayers = document.getElementById('footerPlayers');
+            
+            setInterval(() => {
+                if (!serverOnline) {
+                    onlinePlayers = 0;
+                    playerElement.textContent = "0";
+                    if (footerPlayers) footerPlayers.textContent = "0";
+                    playerElement.style.color = '#DC143C';
+                    return;
+                }
+                
+                const basePlayers = 47;
+                const randomChange = Math.floor(Math.random() * 20) - 8;
+                const newCount = Math.max(0, Math.min(serverSlots, basePlayers + randomChange));
+                
+                onlinePlayers = newCount;
+                playerElement.textContent = newCount;
+                if (footerPlayers) footerPlayers.textContent = newCount;
+                
+                if (newCount > serverSlots * 0.8) {
+                    playerElement.style.color = '#FFD700';
+                } else if (newCount > serverSlots * 0.4) {
+                    playerElement.style.color = '#00C9A7';
+                } else {
+                    playerElement.style.color = '#DC143C';
+                }
+            }, 10000);
+        }
+
+        function buyItem(itemId) {
+            const item = storeItems.find(i => i.id === itemId);
+            const currency = item.currency === 'دايموند' ? '💎' : '$';
+            showRoyalNotification('success', `🎉 تم بدء عملية شراء: ${item.name}\n💰 السعر: ${currency}${item.price}`, 5000);
+            addActivity(`شراء: ${item.name} - ${currency}${item.price}`);
+        }
+
+        function buyRank(rankId) {
+            const rank = ranks.find(r => r.id === rankId);
+            showRoyalNotification('success', `👑 تم بدء عملية شراء الرتبة: ${rank.name}\n💰 السعر: ${rank.price}`, 5000);
+            addActivity(`شراء رتبة: ${rank.name}`);
+        }
+
+        function viewGuide(guideId) {
+            const guide = guides.find(g => g.id === guideId);
+            alert(`📚 ${guide.title}\n\n${guide.description}`);
+            addActivity(`عرض دليل: ${guide.title}`);
+        }
+
+        function voteNow() {
+            showRoyalNotification('info', `🗳️ للتصويت لمملكة NASSCRAFT:\n1. قم بزيارة موقع التصويت\n2. ابحث عن NASSCRAFT\n3. اضغط على تصويت\n4. احصل على مكافآتك في اللعبة!`, 7000);
+            addActivity(`بدأ عملية التصويت للمملكة`);
+        }
+
+        // ============================================
+        // NAVIGATION SYSTEM
+        // ============================================
+        
+        function initializeNavigation() {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const sections = document.querySelectorAll('.content-section');
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    const theme = this.getAttribute('data-theme');
+                    
+                    // تحديث الأزرار النشطة
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // تحديث الأقسام
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === target) {
+                            section.classList.add('active');
+                            document.body.setAttribute('data-theme', theme);
+                            document.querySelector('.header').setAttribute('data-theme', theme);
+                        }
+                    });
+                    
+                    // إضافة تأثير
+                    this.classList.add('animate__animated', 'animate__pulse');
+                    setTimeout(() => this.classList.remove('animate__animated', 'animate__pulse'), 300);
+                    
+                    // التمرير للأعلى
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        }
+
+        function openSection(sectionId) {
+            if (!currentAdmin) return;
+            
+            const navButton = document.querySelector(`[data-target="${sectionId}"]`);
+            if (navButton) {
+                navButton.click();
+            }
+            addActivity(`فتح قسم: ${sectionId}`);
+        }
+
+        // ============================================
+        // DATA MANAGEMENT
+        // ============================================
+        
+        function addActivity(action) {
+            const time = new Date().toLocaleTimeString('ar-SA');
+            royalActivityLog.push({
+                action: action,
+                time: time,
+                admin: currentAdmin ? currentAdmin.name : 'النظام',
+                timestamp: Date.now()
+            });
+            
+            if (royalActivityLog.length > 50) {
+                royalActivityLog.shift();
+            }
+            
+            saveData('activityLog', royalActivityLog);
+            updateActivityLog();
+        }
+
+        function updateActivityLog() {
+            const activityContainer = document.getElementById('activityLog');
+            if (activityContainer) {
+                activityContainer.innerHTML = royalActivityLog.slice().reverse().map(activity => `
+                    <div class="visitor-item">
+                        <span>${activity.action}</span>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">${activity.time}</span>
+                        <small style="color: var(--text-muted);">${activity.admin || 'النظام'}</small>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function saveData(key, data) {
+            try {
+                localStorage.setItem(`nascraft_${key}`, JSON.stringify(data));
+            } catch (e) {
+                console.error('Error saving data:', e);
+            }
+        }
+
+        function loadSavedData() {
+            try {
+                const savedVisitors = localStorage.getItem('nascraft_visitors');
+                const savedNews = localStorage.getItem('nascraft_news');
+                const savedRules = localStorage.getItem('nascraft_rules');
+                const savedWarningsLog = localStorage.getItem('nascraft_warningsLog');
+                const savedBlacklist = localStorage.getItem('nascraft_blacklist');
+                const savedActivity = localStorage.getItem('nascraft_activityLog');
+                const savedConfig = localStorage.getItem('nascraft_royalConfig');
+                
+                if (savedVisitors) royalVisitors = JSON.parse(savedVisitors);
+                if (savedNews) news = JSON.parse(savedNews);
+                if (savedRules) allRules = JSON.parse(savedRules);
+                if (savedWarningsLog) warningsLog = JSON.parse(savedWarningsLog);
+                if (savedBlacklist) blacklist = JSON.parse(savedBlacklist);
+                if (savedActivity) royalActivityLog = JSON.parse(savedActivity);
+                if (savedConfig) {
+                    royalConfig = { ...royalConfig, ...JSON.parse(savedConfig) };
+                    serverSlots = royalConfig.maxPlayers;
+                    if (document.getElementById('serverSlots')) {
+                        document.getElementById('serverSlots').value = serverSlots;
+                    }
+                }
+                
+                updateVisitorsDisplay();
+                updateActivityLog();
+                loadAllData();
+            } catch (e) {
+                console.error('Error loading saved data:', e);
+            }
+        }
+
+        // ============================================
+        // OTHER FUNCTIONS
+        // ============================================
+        
+        function logoutAdmin() {
+            if (currentAdmin) {
+                addActivity(`تسجيل خروج: ${currentAdmin.name}`);
+                showRoyalNotification('info', `👋 وداعاً، ${currentAdmin.role} ${currentAdmin.name}!`, 5000);
+            }
+            
+            currentAdmin = null;
+            document.getElementById('adminControls').style.display = 'none';
+        }
+
+        function showStatistics() {
+            refreshStats();
+        }
+
+        function openGlobalMessages() {
+            openFounderPanel();
+        }
+
+        function openAdvancedStats() {
+            openFounderPanel();
+        }
+
+        function openSecurityPanel() {
+            openFounderPanel();
+        }
+
+        // ============================================
+        // MESSAGE MODAL SYSTEM
+        // ============================================
+        
+        function showMessageModal(content) {
+            document.getElementById('messageContent').innerHTML = content;
+            document.getElementById('messageModal').classList.add('active');
+        }
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').classList.remove('active');
+            document.getElementById('messageContent').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
